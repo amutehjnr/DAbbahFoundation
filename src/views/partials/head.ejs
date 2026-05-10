@@ -4,27 +4,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
   <!-- Primary Meta Tags -->
-  <title><%= title || "D'Abbah Foundation — Building Hope. Restoring Lives." %></title>
-  <meta name="description" content="<%= description || 'D\'Abbah Foundation: Preventing drug abuse, restoring hope, and empowering youth in Nigeria.' %>"/>
+  <title><%= locals.title || "D'Abbah Foundation — Building Hope. Restoring Lives." %></title>
+  <meta name="description" content="<%= locals.description || 'D&apos;Abbah Foundation: Preventing drug abuse, restoring hope, and empowering youth in Nigeria.' %>"/>
   <meta name="keywords" content="drug abuse prevention, NGO Nigeria, youth empowerment, D'Abbah Foundation, drug-free Nigeria"/>
   <meta name="author" content="D'Abbah Foundation"/>
-  <meta name="robots" content="index, follow"/>
+  <meta name="robots" content="<%= locals.robots || 'index, follow' %>"/>
   <link rel="canonical" href="<%= appUrl + (locals.canonicalPath || '/') %>"/>
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="<%= appUrl %>"/>
-  <meta property="og:title" content="<%= title || 'D\'Abbah Foundation' %>"/>
-  <meta property="og:description" content="<%= description || 'Building Hope. Restoring Lives.' %>"/>
-  <meta property="og:image" content="<%= ogImage || appUrl + '/images/og-default.jpg' %>"/>
+  <meta property="og:title" content="<%= locals.title || 'D&apos;Abbah Foundation' %>"/>
+  <meta property="og:description" content="<%= locals.description || 'Building Hope. Restoring Lives.' %>"/>
+  <meta property="og:image" content="<%= locals.ogImage || (appUrl + '/images/og-default.jpg') %>"/>
   <meta property="og:site_name" content="D'Abbah Foundation"/>
   <meta property="og:locale" content="en_NG"/>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="<%= title || 'D\'Abbah Foundation' %>"/>
-  <meta name="twitter:description" content="<%= description || 'Building Hope. Restoring Lives.' %>"/>
-  <meta name="twitter:image" content="<%= ogImage || appUrl + '/images/og-default.jpg' %>"/>
+  <meta name="twitter:title" content="<%= locals.title || 'D&apos;Abbah Foundation' %>"/>
+  <meta name="twitter:description" content="<%= locals.description || 'Building Hope. Restoring Lives.' %>"/>
+  <meta name="twitter:image" content="<%= locals.ogImage || (appUrl + '/images/og-default.jpg') %>"/>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg"/>
