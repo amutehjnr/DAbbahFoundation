@@ -331,6 +331,13 @@ ul, ol { list-style: none; }
   position: relative; display: flex; align-items: center; overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;        
+    padding: 5rem 0 3rem;   
+  }
+}
+
 .hero-bg {
   position: absolute; inset: 0;
   background:
@@ -372,7 +379,7 @@ ul, ol { list-style: none; }
 }
 
 .hero-inner {
-  max-width: var(--max-width); margin: 0 auto; padding: 8rem 1.5rem 5rem;
+  max-width: var(--max-width); margin: 0 auto; padding: 4rem 1.5rem 3rem;
   position: relative; z-index: 1;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
 }
