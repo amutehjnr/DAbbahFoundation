@@ -1,0 +1,86 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">Our Work in Action</span>
+        <h1 class="page-hero-title">Foundation <em class="accent-gold">Gallery</em></h1>
+        <p class="page-hero-sub">Moments of hope, impact, and community from our programs across Nigeria.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+
+      <!-- Category Filter -->
+      <div class="gallery-filter reveal-up">
+        <a href="/gallery" class="gallery-filter-btn <%= activeCategory === 'all' ? 'active' : '' %>">All Photos</a>
+        <% ['events','programs','community','team','other'].forEach(cat => { %>
+        <a href="/gallery?category=<%= cat %>"
+           class="gallery-filter-btn <%= activeCategory === cat ? 'active' : '' %>">
+          <%= cat.charAt(0).toUpperCase() + cat.slice(1) %>
+        </a>
+        <% }) %>
+      </div>
+
+      <% if (gallery && gallery.length > 0) { %>
+      <div class="gallery-full-grid reveal-up">
+        <% gallery.forEach((img, i) => { %>
+        <div class="gallery-full-item" style="animation-delay: <%= (i % 6) * 0.06 %>s">
+          <button class="gallery-item-btn" onclick="openLightbox('<%= img.image?.url || '/images/placeholder.jpg' %>', '<%= img.title || 'Gallery Image' %>')"
+                  aria-label="View <%= img.title || 'gallery image' %>">
+            <img src="<%= img.image?.url || '/images/placeholder.jpg' %>"
+                 alt="<%= img.image?.alt || img.title || 'Foundation gallery' %>"
+                 loading="lazy" width="400" height="300"/>
+            <div class="gallery-full-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span><%= img.title %></span>
+              <% if (img.category) { %><small><%= img.category %></small><% } %>
+            </div>
+          </button>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <div class="gallery-empty reveal-up">
+        <p>No photos available yet. Check back soon!</p>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" style="display:none;">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
+  <div class="lightbox-content">
+    <img id="lightboxImg" src="" alt="" class="lightbox-img"/>
+    <p id="lightboxCaption" class="lightbox-caption"></p>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+<script>
+function openLightbox(src, caption) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxImg').alt = caption;
+  document.getElementById('lightboxCaption').textContent = caption;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox')?.addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>

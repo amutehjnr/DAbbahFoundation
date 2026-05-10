@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<%- include('../partials/head') %>
+<body>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">News & Stories</span>
+        <h1 class="page-hero-title">Blog & <em class="accent-gold">Updates</em></h1>
+        <p class="page-hero-sub">Stories of hope, transformation, and community impact from across Nigeria.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+
+      <!-- Featured Post -->
+      <% if (typeof featured !== 'undefined' && featured) { %>
+      <article class="featured-post reveal-up">
+        <div class="featured-post-image">
+          <% if (featured.coverImage?.url) { %>
+          <img src="<%= featured.coverImage.url %>" alt="<%= featured.coverImage.alt || featured.title %>" loading="lazy"/>
+          <% } else { %>
+          <div class="featured-post-placeholder" aria-hidden="true">✦</div>
+          <% } %>
+          <span class="featured-label">Featured</span>
+        </div>
+        <div class="featured-post-body">
+          <span class="blog-card-cat"><%= featured.category %></span>
+          <h2 class="featured-post-title">
+            <a href="/blog/<%= featured.slug %>"><%= featured.title %></a>
+          </h2>
+          <p class="featured-post-excerpt"><%= featured.excerpt %></p>
+          <div class="featured-post-meta">
+            <span><%= featured.author?.name || "D'Abbah Team" %></span>
+            <span>·</span>
+            <time datetime="<%= featured.publishedAt %>">
+              <%= new Date(featured.publishedAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+            </time>
+          </div>
+          <a href="/blog/<%= featured.slug %>" class="btn-outline">Read Full Story →</a>
+        </div>
+      </article>
+      <% } %>
+
+      <!-- Search & Filter -->
+      <div class="blog-filter-bar reveal-up">
+        <form method="GET" action="/blog" class="blog-search-form">
+          <div class="search-input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" name="search" value="<%= filter?.search || '' %>" placeholder="Search stories..." aria-label="Search blog posts"/>
+          </div>
+          <div class="filter-cats">
+            <a href="/blog" class="filter-cat-btn <%= !filter?.category ? 'active' : '' %>">All</a>
+            <% ['News','Programs','Stories','Awareness','Events','Reports'].forEach(cat => { %>
+            <a href="/blog?category=<%= cat %><%= filter?.search ? '&search=' + filter.search : '' %>"
+               class="filter-cat-btn <%= filter?.category === cat ? 'active' : '' %>"><%= cat %></a>
+            <% }) %>
+          </div>
+        </form>
+      </div>
+
+      <!-- Posts Grid -->
+      <% if (posts && posts.length > 0) { %>
+      <div class="blog-grid">
+        <% posts.forEach((post, i) => { %>
+        <article class="blog-card reveal-up" style="animation-delay: <%= (i % 3) * 0.1 %>s">
+          <a href="/blog/<%= post.slug %>" class="blog-card-image-link" tabindex="-1" aria-hidden="true">
+            <div class="blog-card-image">
+              <% if (post.coverImage?.url) { %>
+              <img src="<%= post.coverImage.url %>" alt="<%= post.coverImage.alt || post.title %>" loading="lazy" width="400" height="240"/>
+              <% } else { %>
+              <div class="blog-card-placeholder" aria-hidden="true">✦</div>
+              <% } %>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-cat"><%= post.category %></span>
+            <h3 class="blog-card-title">
+              <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+            </h3>
+            <p class="blog-card-excerpt"><%= post.excerpt %></p>
+            <div class="blog-card-meta">
+              <span><%= post.author?.name || "D'Abbah Team" %></span>
+              <span>·</span>
+              <time datetime="<%= post.publishedAt %>">
+                <%= new Date(post.publishedAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+              </time>
+              <span>·</span>
+              <span><%= post.views || 0 %> views</span>
+            </div>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+
+      <!-- Pagination -->
+      <% if (pages > 1) { %>
+      <nav class="blog-pagination reveal-up" aria-label="Blog pagination">
+        <% for (let i = 1; i <= pages; i++) { %>
+        <a href="/blog?page=<%= i %><%= filter?.category ? '&category=' + filter.category : '' %><%= filter?.search ? '&search=' + filter.search : '' %>"
+           class="page-pill <%= page === i ? 'active' : '' %>" aria-label="Page <%= i %>" aria-current="<%= page === i ? 'page' : 'false' %>"><%= i %></a>
+        <% } %>
+      </nav>
+      <% } %>
+
+      <% } else { %>
+      <div class="blog-empty">
+        <p>No posts found<% if (filter?.search) { %> for "<%= filter.search %>"<% } %>.</p>
+        <a href="/blog" class="btn-outline">Clear filters</a>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
+</body>
+</html>

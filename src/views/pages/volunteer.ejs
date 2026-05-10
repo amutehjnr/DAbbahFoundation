@@ -1,0 +1,154 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">Join the Team</span>
+        <h1 class="page-hero-title">Become a <em class="accent-gold">Volunteer</em></h1>
+        <p class="page-hero-sub">Your time and skills can change lives. Join hundreds of volunteers creating drug-free communities across Nigeria.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="volunteer-grid">
+        <div class="volunteer-info reveal-left">
+          <span class="eyebrow-tag">Why Volunteer?</span>
+          <h2 class="section-title-left">Make a <em class="accent">Real Impact</em></h2>
+          <p>Volunteering with D'Abbah Foundation gives you the opportunity to directly transform lives while developing your own leadership, communication, and community organizing skills.</p>
+
+          <div class="volunteer-perks">
+            <% [
+              { icon: '🎓', title: 'Training & Development', desc: 'Receive professional training in drug prevention education, counselling techniques, and community facilitation.' },
+              { icon: '🤝', title: 'Community & Network', desc: 'Join a powerful network of changemakers, advocates, and professionals committed to a better Nigeria.' },
+              { icon: '📜', title: 'Certification', desc: 'Earn official D\'Abbah Foundation volunteer certificates recognized by partner organizations.' },
+              { icon: '🌍', title: 'Real-World Impact', desc: 'See the tangible difference your work makes in schools, families, and communities.' },
+            ].forEach(p => { %>
+            <div class="volunteer-perk">
+              <span class="perk-icon"><%= p.icon %></span>
+              <div>
+                <h4><%= p.title %></h4>
+                <p><%= p.desc %></p>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+
+          <div class="volunteer-roles">
+            <h4>Volunteer Roles Available:</h4>
+            <ul class="roles-list">
+              <li>School Program Facilitators</li>
+              <li>Community Outreach Coordinators</li>
+              <li>Youth Mentors & Coaches</li>
+              <li>Administrative Support</li>
+              <li>Social Media & Communications</li>
+              <li>Event & Logistics Support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="volunteer-form-wrap reveal-right">
+          <div class="volunteer-form-card">
+            <h3>Apply to Volunteer</h3>
+            <p>Fill in the form and we'll be in touch within 3–5 business days.</p>
+
+            <form id="volunteerForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="volName">Full Name *</label>
+                  <input type="text" id="volName" name="name" required placeholder="Your full name" autocomplete="name"/>
+                </div>
+                <div class="form-group">
+                  <label for="volEmail">Email Address *</label>
+                  <input type="email" id="volEmail" name="email" required placeholder="your@email.com" autocomplete="email"/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="volPhone">Phone Number *</label>
+                  <input type="tel" id="volPhone" name="phone" required placeholder="+234 800 000 0000" autocomplete="tel"/>
+                </div>
+                <div class="form-group">
+                  <label for="volAge">Age</label>
+                  <input type="number" id="volAge" name="age" placeholder="e.g. 25" min="16" max="80"/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="volOccupation">Occupation</label>
+                  <input type="text" id="volOccupation" name="occupation" placeholder="e.g. Teacher, Student, Doctor"/>
+                </div>
+                <div class="form-group">
+                  <label for="volLocation">State / City</label>
+                  <input type="text" id="volLocation" name="location" placeholder="e.g. Abuja, Lagos"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="volAvailability">Availability</label>
+                <select id="volAvailability" name="availability">
+                  <option value="weekends">Weekends only</option>
+                  <option value="weekdays">Weekdays only</option>
+                  <option value="both">Both weekdays and weekends</option>
+                  <option value="remote_only">Remote / Online only</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Programs of Interest (select all that apply)</label>
+                <div class="checkbox-group">
+                  <% [
+                    ['school_sensitization', 'School Sensitization'],
+                    ['recovery_support', 'Recovery Support Groups'],
+                    ['youth_leadership', 'Youth Leadership'],
+                    ['parent_workshops', 'Parent Workshops'],
+                    ['admin', 'Administrative Support']
+                  ].forEach(([val, lbl]) => { %>
+                  <label class="checkbox-item">
+                    <input type="checkbox" name="programs" value="<%= val %>"/> <%= lbl %>
+                  </label>
+                  <% }) %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="volMotivation">Why do you want to volunteer?</label>
+                <textarea id="volMotivation" name="motivation" rows="4" placeholder="Tell us your motivation and what you hope to contribute..."></textarea>
+              </div>
+              <button type="submit" class="btn-form-submit">Submit Application →</button>
+              <div class="form-message" id="volMsg" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+document.getElementById('volunteerForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type=submit]');
+  const msg = document.getElementById('volMsg');
+  btn.disabled = true; btn.textContent = 'Submitting...';
+
+  try {
+    const data = { name: this.name.value, email: this.email.value, phone: this.phone.value };
+    ['age','occupation','location','availability','motivation'].forEach(f => { if(this[f]) data[f] = this[f].value; });
+    data.programs = [...this.querySelectorAll('input[name=programs]:checked')].map(c => c.value);
+
+    const res = await fetch('/volunteer', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+    const result = await res.json();
+    msg.className = 'form-message ' + (result.success ? 'success' : 'error');
+    msg.textContent = result.message || result.error;
+    if (result.success) this.reset();
+  } catch(err) {
+    msg.className = 'form-message error';
+    msg.textContent = 'An error occurred. Please try again.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit Application →';
+  }
+});
+</script>

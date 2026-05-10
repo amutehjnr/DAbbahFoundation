@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title>
+  <meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/main.css"/>
+  <link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'contacts' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Contact Submissions' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header">
+        <div><h2>Contact Submissions</h2><p><%= total %> total messages</p></div>
+      </div>
+      <div class="admin-filters">
+        <form method="GET" action="/admin/contacts" class="filter-form">
+          <select name="status" onchange="this.form.submit()">
+            <option value="" <%= !filter.status ? 'selected' : '' %>>All Statuses</option>
+            <option value="unread" <%= filter.status === 'unread' ? 'selected' : '' %>>Unread</option>
+            <option value="read" <%= filter.status === 'read' ? 'selected' : '' %>>Read</option>
+            <option value="replied" <%= filter.status === 'replied' ? 'selected' : '' %>>Replied</option>
+          </select>
+        </form>
+      </div>
+      <div class="admin-panel">
+        <div class="panel-body">
+          <% if (contacts && contacts.length > 0) { %>
+          <table class="admin-table admin-table-full">
+            <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody>
+              <% contacts.forEach(c => { %>
+              <tr>
+                <td style="font-weight:500;color:white"><%= c.name %></td>
+                <td><%= c.email %></td>
+                <td><span class="cat-tag"><%= c.subject %></span></td>
+                <td style="max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text-admin-muted)"><%= c.message.substring(0, 80) %>...</td>
+                <td><span class="status-badge status-<%= c.status %>"><%= c.status %></span></td>
+                <td><%= new Date(c.createdAt).toLocaleDateString('en-NG') %></td>
+                <td class="actions-cell">
+                  <button onclick="markContact('<%= c._id %>','read')" class="action-btn" title="Mark read">✓</button>
+                  <button onclick="markContact('<%= c._id %>','replied')" class="action-btn" title="Mark replied">↩</button>
+                  <button onclick="markContact('<%= c._id %>','archived')" class="action-btn" title="Archive">🗃</button>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <% if (pages > 1) { %>
+          <div class="admin-pagination">
+            <% for(let i=1; i<=pages; i++) { %><a href="?page=<%= i %><%= filter.status ? '&status='+filter.status : '' %>" class="page-btn <%= page===i?'active':'' %>"><%= i %></a><% } %>
+          </div>
+          <% } %>
+          <% } else { %><div class="panel-empty">No messages found.</div><% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    async function markContact(id, status) {
+      const res = await fetch(`/api/contacts/${id}/status`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ status }) });
+      if ((await res.json()).success) location.reload();
+    }
+  </script>
+</body>
+</html>

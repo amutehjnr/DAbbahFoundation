@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<%- include('../partials/head') %>
+<body>
+<%- include('../partials/navbar') %>
+
+<main id="main-content">
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+  <section id="hero" class="hero-section" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-particles" id="particles"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+
+    <div class="hero-inner container">
+      <div class="hero-text reveal-up">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Nigeria's Youth-Focused Anti-Drug NGO</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-title-line">Breaking Chains,</span>
+          <em class="hero-title-accent">Building Futures</em>
+          <span class="hero-title-line hero-title-sub">One Life at a Time</span>
+        </h1>
+
+        <p class="hero-desc">
+          We empower young people across Nigeria with the tools, knowledge, and support to choose
+          drug-free lives. Through education, community, and compassion — we restore hope.
+        </p>
+
+        <div class="hero-btns">
+          <a href="/#programs" class="btn-primary">
+            Join the Movement
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/donate" class="btn-secondary">Support Our Mission</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num counter" data-target="5000">0</span><span class="hero-stat-suffix">+</span>
+            <span class="hero-stat-lbl">Youth Reached</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num counter" data-target="120">0</span><span class="hero-stat-suffix">+</span>
+            <span class="hero-stat-lbl">Schools Visited</span>
+          </div>
+          <div class="hero-stat-divider" aria-hidden="true"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num counter" data-target="48">0</span>
+            <span class="hero-stat-lbl">Communities Served</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right" aria-hidden="true">
+        <div class="phoenix-container">
+          <svg class="phoenix-svg" viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="phoenixGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#E8B84B" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#C9962A" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="phoenixBody" x1="50" y1="20" x2="250" y2="360">
+                <stop stop-color="#FFD875"/>
+                <stop offset="0.5" stop-color="#E8B84B"/>
+                <stop offset="1" stop-color="#9C6A10"/>
+              </linearGradient>
+              <linearGradient id="phoenixWingL" x1="0" y1="100" x2="150" y2="280">
+                <stop stop-color="#FF9A3C"/>
+                <stop offset="1" stop-color="#C9962A"/>
+              </linearGradient>
+              <linearGradient id="phoenixWingR" x1="300" y1="100" x2="150" y2="280">
+                <stop stop-color="#FF9A3C"/>
+                <stop offset="1" stop-color="#C9962A"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="8" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Glow halo -->
+            <ellipse cx="150" cy="200" rx="120" ry="150" fill="url(#phoenixGlow)"/>
+
+            <!-- Left wing -->
+            <path d="M150 180 C120 140 60 120 20 100 C50 150 80 170 110 200 C80 180 40 190 10 210 C50 220 90 215 120 230 C90 240 60 260 40 290 C80 275 110 265 140 270" fill="url(#phoenixWingL)" opacity="0.9"/>
+
+            <!-- Right wing -->
+            <path d="M150 180 C180 140 240 120 280 100 C250 150 220 170 190 200 C220 180 260 190 290 210 C250 220 210 215 180 230 C210 240 240 260 260 290 C220 275 190 265 160 270" fill="url(#phoenixWingR)" opacity="0.9"/>
+
+            <!-- Body -->
+            <path d="M150 30 C170 60 185 100 185 140 C185 180 170 220 150 340 C130 220 115 180 115 140 C115 100 130 60 150 30Z" fill="url(#phoenixBody)" filter="url(#glow)"/>
+
+            <!-- Head -->
+            <circle cx="150" cy="55" r="28" fill="#FFD875"/>
+            <path d="M150 30 C158 20 165 15 160 30 C155 40 150 45 150 30Z" fill="#FF9A3C"/>
+
+            <!-- Beak -->
+            <path d="M155 58 L168 55 L160 64Z" fill="#C9962A"/>
+
+            <!-- Eye -->
+            <circle cx="160" cy="52" r="5" fill="#0B1F3A"/>
+            <circle cx="162" cy="50" r="2" fill="white"/>
+
+            <!-- Tail feathers -->
+            <path d="M140 300 C130 330 110 350 90 370" stroke="url(#phoenixWingL)" stroke-width="8" stroke-linecap="round"/>
+            <path d="M150 310 C150 340 148 360 145 380" stroke="url(#phoenixBody)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M160 300 C170 330 190 350 210 370" stroke="url(#phoenixWingR)" stroke-width="8" stroke-linecap="round"/>
+
+            <!-- Flame particles -->
+            <circle cx="100" cy="160" r="4" fill="#FFD875" opacity="0.8" class="flame-particle"/>
+            <circle cx="200" cy="140" r="3" fill="#FF9A3C" opacity="0.7" class="flame-particle"/>
+            <circle cx="80" cy="220" r="5" fill="#E8B84B" opacity="0.6" class="flame-particle"/>
+            <circle cx="220" cy="200" r="4" fill="#FFD875" opacity="0.7" class="flame-particle"/>
+          </svg>
+
+          <div class="hero-badge">
+            <div class="hero-badge-inner">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <span class="hero-badge-title">Registered NGO</span>
+                <span class="hero-badge-sub">Federal Republic of Nigeria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────────────────── -->
+  <section id="about" class="section-pad bg-white" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left reveal-left">
+          <span class="eyebrow-tag">Who We Are</span>
+          <h2 id="about-heading" class="section-title-left">A Movement for <em class="accent">Change</em></h2>
+          <p>D'Abbah Foundation is a youth-focused non-governmental organization committed to preventing drug abuse and restoring hope among individuals and communities across Nigeria.</p>
+          <p>We work through education, community engagement, and support systems to create lasting impact and positive behavioral change — because we believe every young person deserves a drug-free future.</p>
+          <p>The phoenix in our identity represents hope, transformation, and new beginnings. Like the phoenix rising from ashes, we believe every individual can rise above addiction.</p>
+
+          <div class="about-cards">
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🎓</span>
+              <h4>Education First</h4>
+              <p>Knowledge-driven prevention programs in schools and communities.</p>
+            </div>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">🤝</span>
+              <h4>Community Led</h4>
+              <p>Working with families, schools, and local leaders for lasting change.</p>
+            </div>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">💙</span>
+              <h4>Compassion Driven</h4>
+              <p>Treating every individual with dignity, empathy, and respect.</p>
+            </div>
+            <div class="about-card">
+              <span class="about-card-icon" aria-hidden="true">⚡</span>
+              <h4>Evidence Based</h4>
+              <p>Grounded in proven methods and continuous impact measurement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right reveal-right">
+          <div class="vm-stack">
+            <div class="vm-card vm-vision">
+              <div class="vm-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <span class="vm-label">Our Vision</span>
+              <p class="vm-text">"A Nigeria where every young person grows up in a safe, drug-free environment, empowered to make healthy choices and live their fullest potential."</p>
+            </div>
+            <div class="vm-card vm-mission">
+              <div class="vm-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span class="vm-label">Our Mission</span>
+              <p class="vm-text">"To break the chains of drug abuse by empowering individuals and communities through transformative education, compassionate support, and strong collaborations for healthier, drug-free lives."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VALUES ───────────────────────────────────────────────────────── -->
+  <section id="values" class="section-pad bg-navy" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag eyebrow-light">What Guides Us</span>
+        <h2 id="values-heading" class="section-title section-title-light">Our Core <em class="accent-gold">Values</em></h2>
+        <p class="section-sub section-sub-light">The principles that drive every decision, program, and interaction at D'Abbah Foundation.</p>
+      </div>
+      <div class="values-grid">
+        <% const values = [
+          { icon: '💙', num: '01', name: 'Compassion', desc: 'We treat everyone with empathy, dignity, and genuine care — never judgment. Every person deserves to be seen and supported.', color: 'blue' },
+          { icon: '⚖️', num: '02', name: 'Integrity', desc: 'We uphold honesty in all we do and promote evidence-based solutions that create real, measurable change in communities.', color: 'gold' },
+          { icon: '🌍', num: '03', name: 'Community', desc: 'We work hand-in-hand with families, schools, and local leaders — because sustainable change is always built together.', color: 'green' },
+          { icon: '⚡', num: '04', name: 'Empowerment', desc: 'We equip individuals with the tools, knowledge, and confidence to make better life choices and become agents of change.', color: 'purple' },
+        ]; %>
+        <% values.forEach((v, i) => { %>
+        <div class="value-card reveal-up" style="animation-delay: <%= i * 0.1 %>s" data-color="<%= v.color %>">
+          <span class="value-bg-num" aria-hidden="true"><%= v.num %></span>
+          <span class="value-icon" role="img" aria-label="<%= v.name %>"><%= v.icon %></span>
+          <h3 class="value-name"><%= v.name %></h3>
+          <p class="value-desc"><%= v.desc %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMS ─────────────────────────────────────────────────────── -->
+  <section id="programs" class="section-pad bg-cream" aria-labelledby="programs-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag">What We Do</span>
+        <h2 id="programs-heading" class="section-title">Programs & <em class="accent">Initiatives</em></h2>
+        <p class="section-sub">Targeted, evidence-based programs creating lasting change in schools, homes, and communities.</p>
+      </div>
+
+      <div class="programs-grid">
+        <% const defaultPrograms = [
+          { icon: '🏫', title: 'School Sensitization Program', desc: 'Awareness sessions conducted in schools to educate students on drug risks, prevention strategies, and building resilience.', tag: 'Education', id: 'school' },
+          { icon: '🤝', title: 'Community Recovery Support Groups', desc: 'Weekly support meetings creating safe spaces for individuals and families affected by drug abuse to heal and rebuild.', tag: 'Recovery', id: 'recovery' },
+          { icon: '🌟', title: 'Youth Leadership Training', desc: 'Training programs to raise the next generation of young ambassadors who champion drug-free advocacy in their communities.', tag: 'Leadership', id: 'youth' },
+          { icon: '👨‍👩‍👧', title: 'Parent Empowerment Workshops', desc: 'Sessions that equip parents with the knowledge, language, and strategies to guide and protect their children effectively.', tag: 'Family', id: 'parents' },
+          { icon: '🏥', title: 'Rehabilitation Referral Network', desc: 'Connecting individuals who need professional help to trusted treatment and recovery centers across Nigeria.', tag: 'Referral', id: 'rehab' },
+        ]; %>
+        <% const displayPrograms = (typeof programs !== 'undefined' && programs.length > 0) ? programs : defaultPrograms; %>
+        <% displayPrograms.slice(0, 5).forEach((p, i) => { %>
+        <article class="program-card reveal-up" style="animation-delay: <%= i * 0.08 %>s" id="<%= p.id || p._id %>">
+          <div class="program-icon-wrap" aria-hidden="true">
+            <span class="program-icon"><%= p.icon || '✦' %></span>
+          </div>
+          <h3 class="program-title"><%= p.title %></h3>
+          <p class="program-desc"><%= p.desc || p.shortDescription || p.description %></p>
+          <span class="program-tag"><%= p.tag || p.category || 'Program' %></span>
+        </article>
+        <% }) %>
+      </div>
+
+      <div class="section-cta reveal-up">
+        <a href="/programs" class="btn-outline">View All Programs →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── IMPACT STATS ─────────────────────────────────────────────────── -->
+  <section id="impact" class="section-pad bg-gradient-navy" aria-labelledby="impact-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag eyebrow-light">Our Impact</span>
+        <h2 id="impact-heading" class="section-title section-title-light">Transforming Lives <em class="accent-gold">Daily</em></h2>
+      </div>
+      <div class="impact-grid">
+        <% const stats = [
+          { num: 5000, suffix: '+', label: 'Youth Reached', icon: '👥' },
+          { num: 120, suffix: '+', label: 'Schools Visited', icon: '🏫' },
+          { num: 48, suffix: '', label: 'Community Programs', icon: '🌍' },
+          { num: 200, suffix: '+', label: 'Active Volunteers', icon: '❤️' },
+        ]; %>
+        <% stats.forEach((s, i) => { %>
+        <div class="impact-stat reveal-up" style="animation-delay: <%= i * 0.1 %>s">
+          <div class="impact-icon" aria-hidden="true"><%= s.icon %></div>
+          <div class="impact-num-wrap">
+            <span class="impact-num counter" data-target="<%= s.num %>">0</span>
+            <span class="impact-suffix"><%= s.suffix %></span>
+          </div>
+          <p class="impact-label"><%= s.label %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── APPROACH ─────────────────────────────────────────────────────── -->
+  <section id="approach" class="section-pad bg-white" aria-labelledby="approach-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag">Why It Works</span>
+        <h2 id="approach-heading" class="section-title">Our <em class="accent">Approach</em></h2>
+        <p class="section-sub">Effective drug abuse prevention requires more than awareness — it demands a holistic, sustained strategy.</p>
+      </div>
+      <div class="approach-grid">
+        <% const approaches = [
+          { num: '01', icon: '📚', title: 'Education', desc: 'Delivering age-appropriate, evidence-based drug education in schools and community centres that empowers real-world decision making.' },
+          { num: '02', icon: '🔍', title: 'Early Intervention', desc: 'Identifying at-risk youth early through screening and community partnerships, delivering targeted support before crisis emerges.' },
+          { num: '03', icon: '🌐', title: 'Community Involvement', desc: 'Mobilising parents, teachers, religious leaders, and local government to build a protective web around every young person.' },
+          { num: '04', icon: '🔄', title: 'Continuous Support', desc: 'Long-term follow-up, counselling, and peer networks that sustain recovery and prevent relapse long after initial intervention.' },
+        ]; %>
+        <% approaches.forEach((a, i) => { %>
+        <div class="approach-card reveal-up" style="animation-delay: <%= i * 0.1 %>s">
+          <div class="approach-num" aria-hidden="true"><%= a.num %></div>
+          <div class="approach-icon" aria-hidden="true"><%= a.icon %></div>
+          <h3 class="approach-title"><%= a.title %></h3>
+          <p class="approach-desc"><%= a.desc %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─────────────────────────────────────────────────── -->
+  <section id="testimonials" class="section-pad bg-cream" aria-labelledby="testimonials-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag">Voices of Hope</span>
+        <h2 id="testimonials-heading" class="section-title">Stories of <em class="accent">Transformation</em></h2>
+        <p class="section-sub">Real people. Real change. Hear from those whose lives have been touched by D'Abbah Foundation.</p>
+      </div>
+
+      <div class="testimonial-track-wrap">
+        <div class="testimonial-track" id="testimonialTrack">
+          <% const defaultTestimonials = [
+            { name: 'Amaka O.', role: 'Parent, Abuja', quote: 'D\'Abbah Foundation\'s parent workshop changed everything for our family. I finally knew how to talk to my son about drugs without pushing him away. Six months later, he\'s thriving.' },
+            { name: 'Emmanuel T.', role: 'Recovered Youth, Lagos', quote: 'I was 17 and heading down a dangerous path. The recovery support group gave me community and purpose when I had none. Today I volunteer and give back what I received.' },
+            { name: 'Mrs. Chidinma A.', role: 'School Teacher, Port Harcourt', quote: 'After the school sensitization program, our students began reporting peer pressure to counselors instead of succumbing to it. The difference in school culture is profound.' },
+            { name: 'Ibrahim M.', role: 'Youth Ambassador, Kano', quote: 'The Youth Leadership Training gave me skills I use every day — not just to stay drug-free, but to lead, speak, and inspire others in my community to do the same.' },
+          ]; %>
+          <% const displayTestimonials = (typeof testimonials !== 'undefined' && testimonials.length > 0) ? testimonials : defaultTestimonials; %>
+          <% displayTestimonials.forEach((t, i) => { %>
+          <article class="testimonial-card" aria-label="Testimonial from <%= t.name %>">
+            <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+            <p class="testimonial-text"><%= t.quote %></p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">
+                <%= (t.name || 'A')[0] %>
+              </div>
+              <div>
+                <span class="testimonial-name"><%= t.name %></span>
+                <span class="testimonial-role"><%= t.role %></span>
+              </div>
+            </div>
+            <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+          </article>
+          <% }) %>
+        </div>
+
+        <div class="testimonial-controls">
+          <button class="testimonial-btn" id="testimPrev" aria-label="Previous testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="testimonial-dots" id="testimDots" role="tablist"></div>
+          <button class="testimonial-btn" id="testimNext" aria-label="Next testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY PREVIEW ───────────────────────────────────────────────── -->
+  <% if (typeof gallery !== 'undefined' && gallery.length > 0) { %>
+  <section id="gallery-preview" class="section-pad bg-navy-light" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag eyebrow-light">Our Work in Action</span>
+        <h2 id="gallery-heading" class="section-title section-title-light">Foundation <em class="accent-gold">Gallery</em></h2>
+      </div>
+      <div class="gallery-masonry">
+        <% gallery.slice(0, 6).forEach((img, i) => { %>
+        <div class="gallery-item reveal-up" style="animation-delay: <%= i * 0.06 %>s">
+          <img src="<%= img.image?.url || '/images/placeholder.jpg' %>" alt="<%= img.image?.alt || img.title %>" loading="lazy" width="400" height="300"/>
+          <div class="gallery-overlay">
+            <span><%= img.title %></span>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <div class="section-cta reveal-up">
+        <a href="/gallery" class="btn-outline btn-outline-light">View Full Gallery →</a>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ─── BLOG PREVIEW ─────────────────────────────────────────────────── -->
+  <% if (typeof recentPosts !== 'undefined' && recentPosts.length > 0) { %>
+  <section id="blog-preview" class="section-pad bg-white" aria-labelledby="blog-heading">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag">Latest Updates</span>
+        <h2 id="blog-heading" class="section-title">News & <em class="accent">Stories</em></h2>
+        <p class="section-sub">Follow our journey, campaigns, and community stories from across Nigeria.</p>
+      </div>
+      <div class="blog-grid">
+        <% recentPosts.forEach((post, i) => { %>
+        <article class="blog-card reveal-up" style="animation-delay: <%= i * 0.1 %>s">
+          <a href="/blog/<%= post.slug %>" class="blog-card-image-link" tabindex="-1" aria-hidden="true">
+            <div class="blog-card-image">
+              <% if (post.coverImage?.url) { %>
+              <img src="<%= post.coverImage.url %>" alt="<%= post.coverImage.alt || post.title %>" loading="lazy" width="400" height="240"/>
+              <% } else { %>
+              <div class="blog-card-placeholder" aria-hidden="true">✦</div>
+              <% } %>
+            </div>
+          </a>
+          <div class="blog-card-body">
+            <span class="blog-card-cat"><%= post.category %></span>
+            <h3 class="blog-card-title">
+              <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+            </h3>
+            <p class="blog-card-excerpt"><%= post.excerpt %></p>
+            <div class="blog-card-meta">
+              <span><%= post.author?.name || 'D\'Abbah Team' %></span>
+              <span>·</span>
+              <time datetime="<%= post.publishedAt %>"><%= new Date(post.publishedAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'short', day: 'numeric' }) %></time>
+            </div>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+      <div class="section-cta reveal-up">
+        <a href="/blog" class="btn-outline">Read All Stories →</a>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ─── DONATE CTA ────────────────────────────────────────────────────── -->
+  <section id="cta" class="cta-section" aria-labelledby="cta-heading">
+    <div class="cta-bg" aria-hidden="true">
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content reveal-up">
+        <span class="eyebrow-tag eyebrow-light">Make a Difference</span>
+        <h2 id="cta-heading" class="cta-title">Be Part of the <em>Solution</em></h2>
+        <p class="cta-desc">Your support enables us to reach more youth, support more families, and build stronger, drug-free communities across Nigeria. Every contribution — large or small — transforms lives.</p>
+        <div class="cta-btns">
+          <a href="/donate" class="btn-gold">Donate Today</a>
+          <a href="/volunteer" class="btn-ghost-light">Become a Volunteer</a>
+          <a href="/contact" class="btn-ghost-light">Partner With Us</a>
+        </div>
+        <p class="cta-trust">🔒 All donations are securely processed via Paystack & Flutterwave</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────────────── -->
+  <section id="contact-preview" class="section-pad bg-cream" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <span class="eyebrow-tag">Get in Touch</span>
+          <h2 id="contact-heading" class="section-title-left">Let's <em class="accent">Connect</em></h2>
+          <p>Whether you want to partner, volunteer, seek help, or simply learn more — we'd love to hear from you.</p>
+
+          <ul class="contact-details">
+            <li>
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Email</span>
+                <a href="mailto:info@dabbahfoundation.org" class="contact-value">info@dabbahfoundation.org</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.59 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.76-1.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Phone</span>
+                <a href="tel:+2348000000000" class="contact-value">+234 800 000 0000</a>
+              </div>
+            </li>
+            <li>
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Location</span>
+                <span class="contact-value">Abuja, Federal Capital Territory, Nigeria</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" name="name" placeholder="Your full name" required autocomplete="name"/>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required autocomplete="email"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <select id="contactSubject" name="subject">
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Partnership">Partnership Opportunity</option>
+                <option value="Volunteer">Volunteer Application</option>
+                <option value="Donations">Donation Inquiry</option>
+                <option value="Program Information">Program Information</option>
+                <option value="Media / Press">Media / Press</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell us how you'd like to get involved or how we can help..." required></textarea>
+            </div>
+            <button type="submit" class="btn-form-submit">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <div class="form-message" id="formMsg" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+// Contact form submission
+document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type=submit]');
+  const msg = document.getElementById('formMsg');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try {
+    const formData = Object.fromEntries(new FormData(this));
+    const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+    const data = await res.json();
+    msg.className = 'form-message ' + (data.success ? 'success' : 'error');
+    msg.textContent = data.message || data.error;
+    if (data.success) this.reset();
+  } catch (err) {
+    msg.className = 'form-message error';
+    msg.textContent = 'An error occurred. Please try again.';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+  }
+});
+
+// Newsletter subscription
+async function subscribeNewsletter() {
+  const input = document.getElementById('newsletterEmail');
+  const email = input?.value?.trim();
+  if (!email) return;
+  try {
+    const res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+    const data = await res.json();
+    if (data.success) { input.value = ''; alert(data.message); }
+  } catch (e) { alert('Subscription failed. Please try again.'); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><%= title %></title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'programs' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Programs' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header"><div><h2>Programs Management</h2><p><%= programs.length %> programs</p></div></div>
+      <div class="admin-panel"><div class="panel-body">
+        <% if (programs && programs.length > 0) { %>
+        <table class="admin-table admin-table-full">
+          <thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Featured</th><th>Order</th><th>Beneficiaries</th></tr></thead>
+          <tbody>
+            <% programs.forEach(p => { %>
+            <tr>
+              <td><div style="font-weight:500;color:white"><%= p.icon %> <%= p.title %></div></td>
+              <td><span class="cat-tag"><%= p.category || '—' %></span></td>
+              <td><span class="status-badge status-<%= p.status %>"><%= p.status %></span></td>
+              <td><%= p.featured ? '⭐' : '—' %></td>
+              <td><%= p.order %></td>
+              <td><%= (p.impact?.beneficiaries || 0).toLocaleString() %>+</td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } else { %><div class="panel-empty">No programs found. Run <code>npm run seed</code> to populate.</div><% } %>
+      </div></div>
+    </div>
+  </div>
+</body>
+</html>

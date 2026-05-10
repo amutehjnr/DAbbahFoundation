@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#0F2847"/>
+  <path d="M400 140C400 140 365 162 358 195C351 228 372 242 400 272C428 242 449 228 442 195C435 162 400 140 400 140Z" fill="url(#phGrad)" opacity="0.4"/>
+  <text x="400" y="340" font-family="Georgia" font-size="18" fill="rgba(255,255,255,0.3)" text-anchor="middle">D'Abbah Foundation</text>
+  <defs>
+    <linearGradient id="phGrad" x1="358" y1="140" x2="442" y2="272">
+      <stop stop-color="#E8B84B"/><stop offset="1" stop-color="#C9962A"/>
+    </linearGradient>
+  </defs>
+</svg>

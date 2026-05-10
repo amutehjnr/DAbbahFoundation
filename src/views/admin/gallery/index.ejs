@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title><meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+  <style>
+    .gallery-admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .gallery-admin-item { background: var(--card-bg); border: 1px solid var(--border-admin); border-radius: 12px; overflow: hidden; }
+    .gallery-admin-thumb { width: 100%; height: 150px; object-fit: cover; }
+    .gallery-admin-thumb-placeholder { width: 100%; height: 150px; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-size: 2rem; opacity: 0.3; }
+    .gallery-admin-info { padding: 0.75rem; }
+    .gallery-admin-title { font-size: .85rem; font-weight: 600; color: white; margin-bottom: .3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gallery-admin-cat { font-size: .72rem; color: var(--text-admin-muted); text-transform: capitalize; }
+    .gallery-admin-actions { display: flex; gap: .5rem; padding: 0 .75rem .75rem; }
+    .upload-zone { border: 2px dashed var(--border-admin); border-radius: 16px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 2rem; }
+    .upload-zone:hover { border-color: rgba(201,150,42,.4); background: rgba(201,150,42,.03); }
+    .upload-zone p { color: var(--text-admin-muted); font-size: .875rem; margin-top: .75rem; }
+    .upload-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 500; align-items: center; justify-content: center; }
+    .upload-modal.open { display: flex; }
+    .upload-modal-card { background: var(--card-bg); border: 1px solid var(--border-admin); border-radius: 20px; padding: 2rem; width: min(500px, 90vw); }
+    .upload-modal-card h3 { color: white; margin-bottom: 1.5rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .upload-label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-admin-muted); margin-bottom: .5rem; }
+    .upload-input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid var(--border-admin); border-radius: 10px; padding: .75rem 1rem; color: var(--text-admin); font-family: inherit; font-size: .875rem; outline: none; margin-bottom: 1rem; }
+    .upload-input:focus { border-color: rgba(201,150,42,.5); }
+    .upload-btns { display: flex; gap: .75rem; justify-content: flex-end; margin-top: 1rem; }
+    .btn-upload-cancel { background: transparent; border: 1px solid var(--border-admin); color: var(--text-admin-muted); border-radius: 10px; padding: .65rem 1.25rem; cursor: pointer; font-family: inherit; font-size: .875rem; }
+    .btn-upload-submit { background: var(--gold); color: var(--navy-deep); border: none; border-radius: 10px; padding: .65rem 1.5rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+  </style>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'gallery' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Gallery' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header">
+        <div><h2>Gallery Management</h2><p><%= gallery.length %> photos</p></div>
+        <button class="btn-admin-primary" onclick="document.getElementById('uploadModal').classList.add('open')">+ Upload Photo</button>
+      </div>
+
+      <% if (gallery && gallery.length > 0) { %>
+      <div class="gallery-admin-grid">
+        <% gallery.forEach(img => { %>
+        <div class="gallery-admin-item">
+          <% if (img.image?.url) { %>
+          <img src="<%= img.image.url %>" alt="<%= img.image.alt || img.title %>" class="gallery-admin-thumb" loading="lazy"/>
+          <% } else { %><div class="gallery-admin-thumb-placeholder">🖼</div><% } %>
+          <div class="gallery-admin-info">
+            <div class="gallery-admin-title"><%= img.title %></div>
+            <span class="gallery-admin-cat"><%= img.category %></span>
+          </div>
+          <div class="gallery-admin-actions">
+            <button onclick="deleteImg('<%= img._id %>')" class="action-btn action-delete" title="Delete">🗑 Delete</button>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <div class="panel-empty" style="padding:4rem; text-align:center; background:var(--card-bg); border:1px solid var(--border-admin); border-radius:16px;">No photos uploaded yet. Click "Upload Photo" to add your first image.</div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="upload-modal">
+    <div class="upload-modal-card">
+      <h3>Upload New Photo</h3>
+      <label class="upload-label">Image URL (from Cloudinary or direct link)</label>
+      <input type="url" id="uploadUrl" class="upload-input" placeholder="https://res.cloudinary.com/..."/>
+      <label class="upload-label">Title</label>
+      <input type="text" id="uploadTitle" class="upload-input" placeholder="Photo title"/>
+      <label class="upload-label">Alt Text (accessibility)</label>
+      <input type="text" id="uploadAlt" class="upload-input" placeholder="Describe the image..."/>
+      <label class="upload-label">Category</label>
+      <select id="uploadCat" class="upload-input">
+        <% ['events','programs','community','team','other'].forEach(c => { %><option value="<%= c %>"><%= c.charAt(0).toUpperCase()+c.slice(1) %></option><% }) %>
+      </select>
+      <label class="upload-label"><input type="checkbox" id="uploadFeatured"/> Featured</label>
+      <div class="upload-btns">
+        <button class="btn-upload-cancel" onclick="document.getElementById('uploadModal').classList.remove('open')">Cancel</button>
+        <button class="btn-upload-submit" onclick="uploadPhoto()">Upload</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function uploadPhoto() {
+      const payload = { title: document.getElementById('uploadTitle').value, alt: document.getElementById('uploadAlt').value, category: document.getElementById('uploadCat').value, featured: document.getElementById('uploadFeatured').checked };
+      const url = document.getElementById('uploadUrl').value;
+      if (!url) { alert('Please provide an image URL.'); return; }
+      // Directly save via API with URL
+      try {
+        const res = await fetch('/api/gallery-url', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ ...payload, imageUrl: url }) });
+        const data = await res.json();
+        if (data.success) { location.reload(); } else { alert(data.error); }
+      } catch(e) { alert('Upload failed.'); }
+    }
+
+    async function deleteImg(id) {
+      if (!confirm('Delete this photo permanently?')) return;
+      const res = await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+      if ((await res.json()).success) location.reload();
+    }
+  </script>
+</body>
+</html>

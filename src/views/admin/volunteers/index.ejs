@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title><meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'volunteers' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Volunteers' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header">
+        <div><h2>Volunteer Applications</h2><p><%= total %> total applications</p></div>
+      </div>
+      <div class="admin-filters">
+        <form method="GET" action="/admin/volunteers" class="filter-form">
+          <select name="status" onchange="this.form.submit()">
+            <option value="">All Statuses</option>
+            <% ['pending','approved','active','inactive','rejected'].forEach(s => { %>
+            <option value="<%= s %>" <%= filter.status === s ? 'selected' : '' %>><%= s.charAt(0).toUpperCase()+s.slice(1) %></option>
+            <% }) %>
+          </select>
+        </form>
+      </div>
+      <div class="admin-panel"><div class="panel-body">
+        <% if (volunteers && volunteers.length > 0) { %>
+        <table class="admin-table admin-table-full">
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Location</th><th>Availability</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody>
+            <% volunteers.forEach(v => { %>
+            <tr>
+              <td style="font-weight:500;color:white"><%= v.name %></td>
+              <td><%= v.email %></td>
+              <td><%= v.phone %></td>
+              <td><%= v.location || '—' %></td>
+              <td style="text-transform:capitalize"><%= (v.availability || '').replace('_',' ') %></td>
+              <td><span class="status-badge status-<%= v.status %>"><%= v.status %></span></td>
+              <td><%= new Date(v.createdAt).toLocaleDateString('en-NG') %></td>
+              <td class="actions-cell">
+                <button onclick="updateVol('<%= v._id %>','approved')" class="action-btn" title="Approve">✓</button>
+                <button onclick="updateVol('<%= v._id %>','rejected')" class="action-btn" title="Reject">✗</button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% if (pages > 1) { %>
+        <div class="admin-pagination">
+          <% for(let i=1;i<=pages;i++) { %><a href="?page=<%= i %><%= filter.status ? '&status='+filter.status : '' %>" class="page-btn <%= page===i?'active':'' %>"><%= i %></a><% } %>
+        </div>
+        <% } %>
+        <% } else { %><div class="panel-empty">No volunteer applications found.</div><% } %>
+      </div></div>
+    </div>
+  </div>
+  <script>
+    async function updateVol(id, status) {
+      if (!confirm(`${status === 'approved' ? 'Approve' : 'Reject'} this volunteer?`)) return;
+      const res = await fetch(`/api/volunteers/${id}/status`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ status }) });
+      if ((await res.json()).success) location.reload();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <article class="blog-post-wrap" itemscope itemtype="https://schema.org/Article">
+
+    <!-- Post Hero -->
+    <header class="post-hero bg-navy">
+      <div class="container">
+        <div class="post-hero-content">
+          <a href="/blog" class="back-link-light">← Back to Stories</a>
+          <span class="blog-card-cat" style="margin: 1rem 0; display: inline-block;"><%= post.category %></span>
+          <h1 class="post-title" itemprop="headline"><%= post.title %></h1>
+          <p class="post-excerpt" itemprop="description"><%= post.excerpt %></p>
+          <div class="post-meta">
+            <div class="post-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <div class="post-author-avatar" aria-hidden="true"><%= (post.author?.name || 'D')[0] %></div>
+              <div>
+                <span itemprop="name"><%= post.author?.name || "D'Abbah Foundation" %></span>
+                <time datetime="<%= post.publishedAt %>" itemprop="datePublished">
+                  <%= new Date(post.publishedAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                </time>
+              </div>
+            </div>
+            <div class="post-meta-right">
+              <span><%= post.views %> views</span>
+              <span class="share-btns">
+                <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(appUrl + '/blog/' + post.slug) %>&text=<%= encodeURIComponent(post.title) %>"
+                   target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="share-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(appUrl + '/blog/' + post.slug) %>"
+                   target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="share-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <button onclick="copyLink()" class="share-btn" aria-label="Copy link">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Cover Image -->
+    <% if (post.coverImage?.url) { %>
+    <div class="post-cover-image">
+      <div class="container">
+        <img src="<%= post.coverImage.url %>" alt="<%= post.coverImage.alt || post.title %>"
+             itemprop="image" class="post-cover-img" loading="eager"/>
+      </div>
+    </div>
+    <% } %>
+
+    <!-- Post Body -->
+    <div class="post-body-wrap section-pad bg-white">
+      <div class="container">
+        <div class="post-layout">
+          <div class="post-content" itemprop="articleBody">
+            <%- post.content %>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="post-sidebar">
+            <div class="sidebar-card">
+              <h4>Support Our Work</h4>
+              <p>Help us reach more communities across Nigeria.</p>
+              <a href="/donate" class="btn-primary" style="width:100%; justify-content:center;">Donate Now</a>
+            </div>
+            <div class="sidebar-card">
+              <h4>Get Involved</h4>
+              <p>Join our team of passionate volunteers.</p>
+              <a href="/volunteer" class="btn-outline" style="width:100%; justify-content:center;">Volunteer</a>
+            </div>
+            <div class="sidebar-card tags-card">
+              <h4>Tags</h4>
+              <div class="post-tags">
+                <% (post.tags || []).forEach(tag => { %>
+                <span class="post-tag">#<%= tag %></span>
+                <% }) %>
+                <% if (!post.tags || post.tags.length === 0) { %>
+                <span class="post-tag">#DabbahFoundation</span>
+                <span class="post-tag">#DrugFreeNigeria</span>
+                <span class="post-tag">#YouthEmpowerment</span>
+                <% } %>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Posts -->
+    <% if (related && related.length > 0) { %>
+    <section class="section-pad bg-cream">
+      <div class="container">
+        <h3 class="related-heading">More Stories</h3>
+        <div class="blog-grid" style="grid-template-columns: repeat(3, 1fr)">
+          <% related.forEach(r => { %>
+          <article class="blog-card">
+            <a href="/blog/<%= r.slug %>" tabindex="-1" aria-hidden="true">
+              <div class="blog-card-image">
+                <% if (r.coverImage?.url) { %>
+                <img src="<%= r.coverImage.url %>" alt="<%= r.title %>" loading="lazy" width="400" height="240"/>
+                <% } else { %>
+                <div class="blog-card-placeholder">✦</div>
+                <% } %>
+              </div>
+            </a>
+            <div class="blog-card-body">
+              <h4 class="blog-card-title"><a href="/blog/<%= r.slug %>"><%= r.title %></a></h4>
+              <p class="blog-card-excerpt"><%= r.excerpt?.substring(0, 100) %>...</p>
+            </div>
+          </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+    <% } %>
+
+  </article>
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('.share-btn:last-child');
+    btn.style.color = '#22c55e';
+    setTimeout(() => btn.style.color = '', 2000);
+  });
+}
+</script>

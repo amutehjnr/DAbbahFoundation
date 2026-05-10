@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><%= title %></title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'subscribers' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Subscribers' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header">
+        <div><h2>Newsletter Subscribers</h2><p><%= subscribers.length %> total subscribers</p></div>
+        <button class="btn-admin-primary" onclick="exportCSV()">Export CSV</button>
+      </div>
+      <div class="admin-panel"><div class="panel-body">
+        <% if (subscribers && subscribers.length > 0) { %>
+        <table class="admin-table">
+          <thead><tr><th>Email</th><th>Name</th><th>Status</th><th>Source</th><th>Subscribed</th></tr></thead>
+          <tbody>
+            <% subscribers.forEach(s => { %>
+            <tr>
+              <td style="color:white"><%= s.email %></td>
+              <td><%= s.name || '—' %></td>
+              <td><span class="status-badge status-<%= s.status === 'active' ? 'active' : 'archived' %>"><%= s.status %></span></td>
+              <td style="text-transform:capitalize"><%= s.source || 'website' %></td>
+              <td><%= new Date(s.createdAt).toLocaleDateString('en-NG') %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } else { %><div class="panel-empty">No subscribers yet.</div><% } %>
+      </div></div>
+    </div>
+  </div>
+  <script>
+    function exportCSV() {
+      const rows = [['Email', 'Name', 'Status', 'Date']];
+      document.querySelectorAll('.admin-table tbody tr').forEach(tr => {
+        const cells = [...tr.querySelectorAll('td')];
+        rows.push([cells[0]?.textContent, cells[1]?.textContent, cells[2]?.textContent, cells[4]?.textContent]);
+      });
+      const csv = rows.map(r => r.map(c => `"${(c||'').trim()}"`).join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+      a.download = 'dabbah-subscribers.csv';
+      a.click();
+    }
+  </script>
+</body>
+</html>

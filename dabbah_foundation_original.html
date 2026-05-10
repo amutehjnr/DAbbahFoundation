@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>D'Abbah Foundation — Building Hope. Restoring Lives.</title>
+<meta name="description" content="D'Abbah Foundation is a youth-focused NGO committed to preventing drug abuse and restoring hope among individuals and communities across Nigeria."/>
+<meta property="og:title" content="D'Abbah Foundation"/>
+<meta property="og:description" content="Building Hope. Restoring Lives. Creating a drug-free Nigeria."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--navy:#0B1F3A;
+--navy-deep:#071527;
+--gold:#C9962A;
+--gold-light:#E8B84B;
+--cream:#F8F4EE;
+--slate:#1E3A5F;
+--mist:#EEF3F9;
+--text-dark:#0B1F3A;
+--text-mid:#3A5068;
+--text-light:#6B8299;
+--white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:transparent}
+nav.scrolled{background:rgba(11,31,58,.97);backdrop-filter:blur(12px);padding:.75rem 2rem;box-shadow:0 2px 40px rgba(0,0,0,.3)}
+.nav-logo{display:flex;align-items:center;gap:.75rem}
+.nav-phoenix{width:40px;height:40px}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);font-weight:700;letter-spacing:.02em}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.875rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy-deep)!important;padding:.5rem 1.25rem;border-radius:100px;font-weight:600;font-size:.8rem;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.nav-cta:hover{background:var(--gold-light)!important;transform:translateY(-1px)}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--navy-deep);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(201,150,42,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 20% 80%,rgba(30,58,95,.5) 0%,transparent 70%),linear-gradient(135deg,#071527 0%,#0B1F3A 50%,#0D2847 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,150,42,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,150,42,.05) 1px,transparent 1px);background-size:80px 80px}
+.hero-particles{position:absolute;inset:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(0) translateX(0) scale(1);opacity:0}10%{opacity:1}90%{opacity:.5}100%{transform:translateY(-100vh) translateX(40px) scale(.5);opacity:0}}
+.hero-inner{max-width:1200px;margin:0 auto;padding:8rem 2rem 4rem;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-text{animation:fadeUp .8s ease forwards}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,150,42,.15);border:1px solid rgba(201,150,42,.3);padding:.4rem 1rem;border-radius:100px;margin-bottom:1.5rem}
+.hero-eyebrow span{color:var(--gold);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+h1.hero-title{font-size:clamp(2.5rem,5vw,4.5rem);color:var(--white);line-height:1.1;margin-bottom:1.5rem;font-weight:900}
+h1.hero-title .accent{color:var(--gold)}
+h1.hero-title .line2{display:block;font-style:italic;font-weight:400;font-size:.85em;color:rgba(255,255,255,.7)}
+.hero-desc{color:rgba(255,255,255,.65);font-size:1.1rem;line-height:1.8;margin-bottom:2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--navy-deep);padding:.875rem 2rem;border-radius:100px;font-weight:700;font-size:.875rem;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,150,42,.4)}
+.btn-secondary{background:transparent;color:var(--white);padding:.875rem 2rem;border-radius:100px;font-weight:600;font-size:.875rem;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.3);transition:all .3s}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.hero-stat .lbl{font-size:.75rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.phoenix-large{width:360px;height:360px;filter:drop-shadow(0 0 60px rgba(201,150,42,.3));animation:phoenixFloat 6s ease-in-out infinite}
+@keyframes phoenixFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-20px) rotate(2deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{scroll-margin-top:80px}
+.section-pad{padding:6rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.section-eyebrow{text-align:center;margin-bottom:.75rem}
+.eyebrow-tag{display:inline-block;background:rgba(201,150,42,.12);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;border:1px solid rgba(201,150,42,.25)}
+.section-title{font-size:clamp(2rem,4vw,3rem);color:var(--navy);text-align:center;margin-bottom:1rem;line-height:1.2}
+.section-title .accent{color:var(--gold)}
+.section-sub{text-align:center;color:var(--text-mid);font-size:1.05rem;line-height:1.8;max-width:600px;margin:0 auto 4rem;font-weight:300}
+
+/* ABOUT */
+#about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-left .tag{display:inline-block;background:rgba(201,150,42,.1);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;margin-bottom:1.5rem}
+.about-left h2{font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;line-height:1.2}
+.about-left p{color:var(--text-mid);line-height:1.9;margin-bottom:1.25rem;font-weight:300;font-size:1.02rem}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.about-card{background:var(--mist);border-radius:16px;padding:1.5rem;border:1px solid rgba(30,58,95,.08)}
+.about-card-icon{font-size:1.75rem;margin-bottom:.75rem}
+.about-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--navy);margin-bottom:.5rem;font-weight:700}
+.about-card p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+.vision-mission{display:flex;flex-direction:column;gap:1.5rem}
+.vm-card{background:linear-gradient(135deg,var(--navy) 0%,var(--slate) 100%);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+.vm-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:rgba(201,150,42,.15)}
+.vm-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.vm-card h3{font-size:1.1rem;color:var(--white);line-height:1.6;font-weight:400;font-style:italic}
+
+/* VALUES */
+#values{background:var(--navy-deep);position:relative;overflow:hidden}
+#values::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(201,150,42,.07) 0%,transparent 70%)}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.value-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:2rem 1.5rem;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.value-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,150,42,.08) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.value-card:hover{border-color:rgba(201,150,42,.4);transform:translateY(-6px)}
+.value-card:hover::before{opacity:1}
+.value-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+.value-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:.75rem;font-weight:700}
+.value-card p{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.7}
+.value-card .value-num{position:absolute;top:1rem;right:1rem;font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(201,150,42,.08);line-height:1}
+
+/* PROGRAMS */
+#programs{background:var(--cream)}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.program-card{background:var(--white);border-radius:20px;padding:2rem;border:1px solid rgba(30,58,95,.08);transition:all .35s;position:relative;overflow:hidden}
+.program-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.program-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(11,31,58,.12)}
+.program-card:hover::after{transform:scaleX(1)}
+.program-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--navy),var(--slate));border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.5rem}
+.program-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--navy);margin-bottom:.75rem;font-weight:700}
+.program-card p{font-size:.875rem;color:var(--text-light);line-height:1.7}
+.program-tag{display:inline-block;margin-top:1rem;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(201,150,42,.1);padding:.25rem .7rem;border-radius:100px}
+
+/* IMPACT */
+#impact{background:linear-gradient(135deg,var(--navy) 0%,var(--slate) 100%);position:relative;overflow:hidden}
+#impact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(201,150,42,.1) 0%,transparent 60%)}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.impact-stat{text-align:center;position:relative}
+.impact-stat::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.1)}
+.impact-stat:last-child::after{display:none}
+.impact-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:.5rem}
+.impact-num-suffix{font-size:2rem}
+.impact-label{font-size:.8rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+
+/* APPROACH */
+#approach{background:var(--white)}
+.approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.approach-visual{position:relative}
+.approach-rings{width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border-radius:50%;border:1px solid;animation:ringPulse 4s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.05);opacity:1}}
+.ring-1{width:80%;height:80%;border-color:rgba(201,150,42,.3);animation-delay:0s}
+.ring-2{width:60%;height:60%;border-color:rgba(201,150,42,.5);animation-delay:.5s}
+.ring-3{width:40%;height:40%;border-color:rgba(201,150,42,.7);animation-delay:1s}
+.ring-center{width:100px;height:100px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;box-shadow:0 0 40px rgba(201,150,42,.4)}
+.approach-dots{position:absolute;inset:0}
+.approach-dot{position:absolute;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.dot-icon{width:50px;height:50px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;border:2px solid rgba(201,150,42,.3)}
+.dot-label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);text-align:center;max-width:70px;line-height:1.3}
+.approach-right h2{font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;line-height:1.2}
+.approach-item{display:flex;gap:1.25rem;margin-bottom:1.75rem;align-items:flex-start}
+.approach-item-icon{width:44px;height:44px;min-width:44px;background:linear-gradient(135deg,var(--navy),var(--slate));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.approach-item h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--navy);margin-bottom:.35rem;font-weight:700}
+.approach-item p{font-size:.875rem;color:var(--text-light);line-height:1.6}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--cream)}
+.testimonials-track{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testimonial-card{background:var(--white);border-radius:20px;padding:2rem;border:1px solid rgba(30,58,95,.06);transition:all .3s}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(11,31,58,.1)}
+.testimonial-quote{font-size:3rem;color:var(--gold);line-height:1;margin-bottom:1rem;font-family:'Playfair Display',serif;opacity:.6}
+.testimonial-text{font-size:.95rem;color:var(--text-mid);line-height:1.8;font-style:italic;margin-bottom:1.5rem;font-weight:300}
+.testimonial-author{display:flex;align-items:center;gap:.75rem;padding-top:1.25rem;border-top:1px solid rgba(30,58,95,.06)}
+.author-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--slate));display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.author-name{font-weight:600;font-size:.875rem;color:var(--navy)}
+.author-role{font-size:.775rem;color:var(--text-light)}
+
+/* CTA */
+#cta{background:var(--navy-deep);position:relative;overflow:hidden;text-align:center}
+#cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(201,150,42,.15) 0%,transparent 60%)}
+.donation-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:700px;margin:0 auto 2.5rem}
+.donation-amount{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1rem;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);text-align:center}
+.donation-amount:hover,.donation-amount.active{background:rgba(201,150,42,.2);border-color:var(--gold);color:var(--gold)}
+.donation-sub{font-size:.7rem;font-family:'DM Sans',sans-serif;font-weight:400;color:rgba(255,255,255,.4);display:block;margin-top:.25rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* CONTACT */
+#contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.contact-info h2{font-size:2.5rem;color:var(--navy);margin-bottom:1.25rem}
+.contact-info p{color:var(--text-mid);line-height:1.8;margin-bottom:2rem;font-weight:300}
+.contact-item{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start}
+.contact-item-icon{width:44px;height:44px;min-width:44px;background:var(--mist);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+.contact-item h4{font-weight:600;font-size:.875rem;color:var(--navy);margin-bottom:.25rem}
+.contact-item p{font-size:.85rem;color:var(--text-light)}
+.contact-form{background:var(--mist);border-radius:24px;padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);margin-bottom:.5rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.875rem 1rem;border-radius:12px;border:1.5px solid rgba(30,58,95,.12);background:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text-dark);transition:all .2s;outline:none;appearance:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,150,42,.1)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%;padding:1rem;background:linear-gradient(135deg,var(--navy),var(--slate));color:var(--white);border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .3s}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(11,31,58,.25)}
+.form-success{display:none;background:rgba(34,139,87,.1);border:1px solid rgba(34,139,87,.3);border-radius:12px;padding:1.25rem;text-align:center;color:#228B57;font-weight:500;font-size:.9rem;margin-top:1rem}
+
+/* FOOTER */
+footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:4rem 2rem 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand p{font-size:.875rem;line-height:1.8;color:rgba(255,255,255,.4);max-width:280px;margin-top:1rem}
+.footer-col h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--white);margin-bottom:1.25rem;font-weight:700}
+.footer-col a{display:block;font-size:.85rem;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:.6rem;transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.8rem;color:rgba(255,255,255,.3)}
+.social-links{display:flex;gap:.75rem}
+.social-link{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s;text-decoration:none}
+.social-link:hover{border-color:var(--gold);background:rgba(201,150,42,.15)}
+.newsletter{background:rgba(201,150,42,.08);border:1px solid rgba(201,150,42,.2);border-radius:16px;padding:1.5rem;margin-top:1.25rem}
+.newsletter p{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.75rem}
+.newsletter-input{display:flex;gap:.5rem}
+.newsletter-input input{flex:1;padding:.625rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none}
+.newsletter-input input::placeholder{color:rgba(255,255,255,.3)}
+.newsletter-input input:focus{border-color:var(--gold)}
+.newsletter-input button{padding:.625rem 1rem;background:var(--gold);color:var(--navy-deep);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.newsletter-input button:hover{background:var(--gold-light)}
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* MOBILE */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem;background:none;border:none}
+.nav-hamburger span{width:22px;height:2px;background:var(--white);border-radius:2px;display:block}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy-deep);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--white);text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+
+@media(max-width:900px){
+.nav-links{display:none}.nav-hamburger{display:flex}
+.hero-inner{grid-template-columns:1fr;gap:2rem}.phoenix-large{width:240px;height:240px}
+.about-grid,.approach-grid,.contact-grid{grid-template-columns:1fr}
+.values-grid{grid-template-columns:1fr 1fr}.programs-grid{grid-template-columns:1fr 1fr}
+.impact-grid{grid-template-columns:1fr 1fr}
+.testimonials-track{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+.donation-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+.programs-grid,.about-cards,.values-grid{grid-template-columns:1fr}
+.impact-grid{grid-template-columns:1fr 1fr}
+.hero-stats{gap:1.25rem}.impact-num{font-size:2.5rem}
+.form-row{grid-template-columns:1fr}
+.section-pad{padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <svg class="nav-phoenix" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4C20 4 12 8 10 16C8 24 14 28 20 36C26 28 32 24 30 16C28 8 20 4 20 4Z" fill="url(#pg1)" opacity=".9"/>
+      <path d="M20 10C17 14 15 18 16 22C17 26 19 28 20 30C21 28 23 26 24 22C25 18 23 14 20 10Z" fill="#C9962A" opacity=".7"/>
+      <path d="M14 18C11 17 9 19 10 22C11 25 14 26 17 24C15 23 13 21 14 18Z" fill="#E8B84B" opacity=".5"/>
+      <path d="M26 18C29 17 31 19 30 22C29 25 26 26 23 24C25 23 27 21 26 18Z" fill="#E8B84B" opacity=".5"/>
+      <circle cx="20" cy="22" r="3" fill="#C9962A"/>
+      <defs><linearGradient id="pg1" x1="10" y1="4" x2="30" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#E8B84B"/><stop offset="1" stop-color="#C9962A"/></linearGradient></defs>
+    </svg>
+    <span class="nav-brand">D'<span>Abbah</span> Foundation</span>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#impact">Impact</a>
+    <a href="#testimonials">Stories</a>
+    <a href="#contact">Contact</a>
+    <a href="#cta" class="nav-cta">Donate</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#programs" onclick="toggleMenu()">Programs</a>
+  <a href="#impact" onclick="toggleMenu()">Impact</a>
+  <a href="#testimonials" onclick="toggleMenu()">Stories</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#cta" onclick="toggleMenu()" style="color:var(--gold)">Donate Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-inner container">
+    <div class="hero-text">
+      <div class="hero-eyebrow"><span>Building Hope · Restoring Lives</span></div>
+      <h1 class="hero-title">
+        Breaking the<br>
+        <span class="accent">Chains</span> of<br>
+        <span class="line2">Drug Abuse in Nigeria</span>
+      </h1>
+      <p class="hero-desc">Empowering young people and communities through transformative education, compassionate support, and strong collaborations for drug-free lives.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Support Our Mission
+        </a>
+        <a href="#programs" class="btn-secondary">Explore Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">5,000+</div><div class="lbl">Youth Reached</div></div>
+        <div class="hero-stat"><div class="num">80+</div><div class="lbl">Schools Visited</div></div>
+        <div class="hero-stat"><div class="num">12</div><div class="lbl">Communities</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="phoenix-large" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="180" r="160" fill="rgba(201,150,42,.04)" stroke="rgba(201,150,42,.15)" stroke-width="1"/>
+        <circle cx="180" cy="180" r="120" fill="rgba(201,150,42,.04)" stroke="rgba(201,150,42,.1)" stroke-width="1"/>
+        <circle cx="180" cy="180" r="80" fill="rgba(201,150,42,.06)" stroke="rgba(201,150,42,.2)" stroke-width="1"/>
+        <path d="M180 60C180 60 140 90 130 130C120 170 145 200 180 260C215 200 240 170 230 130C220 90 180 60 180 60Z" fill="url(#phx1)" opacity=".95"/>
+        <path d="M155 140C140 120 110 115 100 130C95 138 100 150 115 155C130 125 145 135 155 140Z" fill="url(#phx2)" opacity=".8"/>
+        <path d="M205 140C220 120 250 115 260 130C265 138 260 150 245 155C230 125 215 135 205 140Z" fill="url(#phx2)" opacity=".8"/>
+        <path d="M148 155C130 140 105 140 95 155C92 163 98 172 112 175C122 150 136 155 148 155Z" fill="#C9962A" opacity=".5"/>
+        <path d="M212 155C230 140 255 140 265 155C268 163 262 172 248 175C238 150 224 155 212 155Z" fill="#C9962A" opacity=".5"/>
+        <path d="M170 240C165 255 158 268 150 278C162 272 174 262 180 260Z" fill="#E8B84B" opacity=".6"/>
+        <path d="M190 240C195 255 202 268 210 278C198 272 186 262 180 260Z" fill="#E8B84B" opacity=".6"/>
+        <path d="M180 110C172 125 168 140 170 155C172 165 176 172 180 178C184 172 188 165 190 155C192 140 188 125 180 110Z" fill="#E8B84B" opacity=".8"/>
+        <circle cx="180" cy="145" r="6" fill="#E8B84B"/>
+        <circle cx="180" cy="145" r="3" fill="#0B1F3A"/>
+        <circle cx="181.5" cy="143.5" r="1" fill="white"/>
+        <circle cx="180" cy="180" r="40" fill="url(#glw)" opacity=".3"/>
+        <defs>
+          <linearGradient id="phx1" x1="130" y1="60" x2="230" y2="260" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F5D080"/><stop offset="0.5" stop-color="#E8B84B"/><stop offset="1" stop-color="#C9962A"/>
+          </linearGradient>
+          <linearGradient id="phx2" x1="95" y1="115" x2="180" y2="175" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F5D080"/><stop offset="1" stop-color="#C9962A"/>
+          </linearGradient>
+          <radialGradient id="glw" cx="50%" cy="50%" r="50%">
+            <stop stop-color="#C9962A"/><stop offset="1" stop-color="#C9962A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <span class="tag">Who We Are</span>
+        <h2>A Movement for Change in Nigeria's Communities</h2>
+        <p>D'Abbah Foundation is a youth-focused non-governmental organization committed to preventing drug abuse and restoring hope among individuals and communities across Nigeria.</p>
+        <p>We work through education, community engagement, and support systems to create lasting impact and positive behavioral change — because we believe every young person deserves a chance to thrive.</p>
+        <div class="about-cards">
+          <div class="about-card"><div class="about-card-icon">🎓</div><h4>Education First</h4><p>School sensitization and awareness campaigns that reach youth early.</p></div>
+          <div class="about-card"><div class="about-card-icon">🤝</div><h4>Community-Led</h4><p>Working with families, schools, and local leaders for real impact.</p></div>
+          <div class="about-card"><div class="about-card-icon">💛</div><h4>Compassionate Care</h4><p>Treating every individual with empathy, not judgment.</p></div>
+          <div class="about-card"><div class="about-card-icon">🔗</div><h4>Recovery Network</h4><p>Connecting individuals to professional treatment centers.</p></div>
+        </div>
+      </div>
+      <div class="vision-mission reveal reveal-delay-2">
+        <div class="vm-card">
+          <div class="vm-label">🔭 Vision Statement</div>
+          <h3>"A Nigeria where every young person grows up in a safe, drug-free environment, empowered to make healthy choices and live their fullest potential."</h3>
+        </div>
+        <div class="vm-card" style="background:linear-gradient(135deg,#1a3a1a,#1a3a2a)">
+          <div class="vm-label">🎯 Mission Statement</div>
+          <h3>"To break the chains of drug abuse by empowering individuals and communities through transformative education, compassionate support, and strong collaborations for healthier, drug-free lives."</h3>
+        </div>
+        <div style="background:rgba(201,150,42,.08);border:1px solid rgba(201,150,42,.2);border-radius:16px;padding:1.5rem;text-align:center">
+          <div style="font-size:1.75rem;margin-bottom:.75rem">🔥</div>
+          <h4 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1rem;margin-bottom:.5rem">The Phoenix Symbol</h4>
+          <p style="font-size:.85rem;color:var(--text-light);line-height:1.7">Just as the phoenix rises from ashes, we believe every individual can rise above addiction and rebuild their life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="section-pad">
+  <div class="container">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag" style="background:rgba(201,150,42,.2);color:var(--gold)">What We Stand For</span></div>
+    <h2 class="section-title reveal" style="color:var(--white)">Our Core <span class="accent">Values</span></h2>
+    <p class="section-sub reveal" style="color:rgba(255,255,255,.5)">The principles that guide every action, every program, and every interaction we have.</p>
+    <div class="values-grid">
+      <div class="value-card reveal reveal-delay-1"><span class="value-num">01</span><span class="value-icon">💙</span><h3>Compassion</h3><p>We treat everyone with empathy, not judgment. Every person who walks through our doors is worthy of dignity and care.</p></div>
+      <div class="value-card reveal reveal-delay-2"><span class="value-num">02</span><span class="value-icon">⚖️</span><h3>Integrity</h3><p>We uphold honesty and promote evidence-based solutions. Our work is grounded in truth and transparent accountability.</p></div>
+      <div class="value-card reveal reveal-delay-3"><span class="value-num">03</span><span class="value-icon">🌍</span><h3>Community</h3><p>We work with families, schools, and local leaders. Sustainable change happens when the whole community is involved.</p></div>
+      <div class="value-card reveal reveal-delay-4"><span class="value-num">04</span><span class="value-icon">⚡</span><h3>Empowerment</h3><p>We equip individuals with tools to make better life choices. We don't just help — we build capacity for lasting change.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="section-pad">
+  <div class="container">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag">What We Do</span></div>
+    <h2 class="section-title reveal">Our <span class="accent">Programs</span> &amp; Initiatives</h2>
+    <p class="section-sub reveal">Five proven pathways to prevention, recovery, and lasting community transformation.</p>
+    <div class="programs-grid">
+      <div class="program-card reveal reveal-delay-1"><div class="program-icon">🏫</div><h3>School Sensitization Program</h3><p>Awareness sessions conducted in schools to educate students on drug risks, prevention strategies, and healthy decision-making from an early age.</p><span class="program-tag">Education</span></div>
+      <div class="program-card reveal reveal-delay-2"><div class="program-icon">🤲</div><h3>Community Recovery Support Groups</h3><p>Weekly support meetings for individuals and families affected by drug abuse, providing a safe space for healing and accountability.</p><span class="program-tag">Recovery</span></div>
+      <div class="program-card reveal reveal-delay-3"><div class="program-icon">🌟</div><h3>Youth Leadership Training</h3><p>Training programs to raise young ambassadors for drug-free advocacy, building the next generation of community champions.</p><span class="program-tag">Leadership</span></div>
+      <div class="program-card reveal reveal-delay-1"><div class="program-icon">👨‍👩‍👧</div><h3>Parent Empowerment Workshops</h3><p>Sessions that equip parents with knowledge, tools, and confidence to guide, support, and protect their children from drug abuse.</p><span class="program-tag">Family</span></div>
+      <div class="program-card reveal reveal-delay-2"><div class="program-icon">🏥</div><h3>Rehabilitation Referral Network</h3><p>Connecting individuals in need to professional treatment and recovery centers, ensuring no one faces addiction alone without proper support.</p><span class="program-tag">Rehabilitation</span></div>
+      <div class="program-card reveal reveal-delay-3" style="background:linear-gradient(135deg,var(--navy),var(--slate));border-color:transparent"><div class="program-icon" style="background:rgba(201,150,42,.2)">🚀</div><h3 style="color:var(--white)">Join the Movement</h3><p style="color:rgba(255,255,255,.6)">Become a volunteer, partner, or advocate. Together, we can reach every young person in Nigeria who needs our help.</p><a href="#contact" class="program-tag" style="color:var(--navy-deep);background:var(--gold);text-decoration:none;display:inline-block;cursor:pointer">Get Involved →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact" class="section-pad">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag" style="background:rgba(201,150,42,.2);color:var(--gold)">Our Impact</span></div>
+    <h2 class="section-title reveal" style="color:var(--white)">Numbers That <span class="accent">Matter</span></h2>
+    <p class="section-sub reveal" style="color:rgba(255,255,255,.5);margin-bottom:3rem">Every number represents a life touched, a future protected, a community strengthened.</p>
+    <div class="impact-grid">
+      <div class="impact-stat reveal reveal-delay-1"><div class="impact-num"><span class="counter" data-target="5000">0</span><span class="impact-num-suffix">+</span></div><div class="impact-label">Youth Reached</div></div>
+      <div class="impact-stat reveal reveal-delay-2"><div class="impact-num"><span class="counter" data-target="80">0</span><span class="impact-num-suffix">+</span></div><div class="impact-label">Schools Visited</div></div>
+      <div class="impact-stat reveal reveal-delay-3"><div class="impact-num"><span class="counter" data-target="12">0</span></div><div class="impact-label">Community Programs</div></div>
+      <div class="impact-stat reveal reveal-delay-4"><div class="impact-num"><span class="counter" data-target="200">0</span><span class="impact-num-suffix">+</span></div><div class="impact-label">Active Volunteers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="section-pad">
+  <div class="container">
+    <div class="approach-grid">
+      <div class="approach-visual reveal">
+        <div class="approach-rings" style="width:380px;height:380px;max-width:100%">
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <div class="ring ring-3"></div>
+          <div class="ring-center">🔥</div>
+          <div class="approach-dots">
+            <div class="approach-dot" style="top:0;left:50%;transform:translateX(-50%) translateY(-10px)"><div class="dot-icon">📚</div><div class="dot-label">Education</div></div>
+            <div class="approach-dot" style="right:-10px;top:50%;transform:translateY(-50%)"><div class="dot-icon">⏰</div><div class="dot-label">Early Intervention</div></div>
+            <div class="approach-dot" style="bottom:0;left:50%;transform:translateX(-50%) translateY(10px)"><div class="dot-icon">🌍</div><div class="dot-label">Community</div></div>
+            <div class="approach-dot" style="left:-10px;top:50%;transform:translateY(-50%)"><div class="dot-icon">💪</div><div class="dot-label">Continuous Support</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="approach-right reveal reveal-delay-2">
+        <span class="eyebrow-tag">Why It Works</span>
+        <h2 style="margin-top:1rem;margin-bottom:2rem">Our Holistic <span style="color:var(--gold)">Approach</span></h2>
+        <div class="approach-item"><div class="approach-item-icon">📚</div><div><h4>Education</h4><p>Targeted, age-appropriate education equipping young people with the knowledge and confidence to make drug-free choices before peer pressure sets in.</p></div></div>
+        <div class="approach-item"><div class="approach-item-icon">⏰</div><div><h4>Early Intervention</h4><p>Identifying and supporting at-risk youth and families before addiction takes hold, with evidence-based screening and counseling resources.</p></div></div>
+        <div class="approach-item"><div class="approach-item-icon">🌍</div><div><h4>Community Involvement</h4><p>Engaging schools, local leaders, religious institutions, and families as partners, because lasting change requires the whole community.</p></div></div>
+        <div class="approach-item"><div class="approach-item-icon">💪</div><div><h4>Continuous Support</h4><p>Ongoing recovery groups, mentorship, and follow-up ensure that healing isn't a one-time event but a sustained journey toward wholeness.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section-pad">
+  <div class="container">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag">Stories of Hope</span></div>
+    <h2 class="section-title reveal">Lives <span class="accent">Transformed</span></h2>
+    <p class="section-sub reveal">Real stories from real people whose lives have been touched by D'Abbah Foundation.</p>
+    <div class="testimonials-track">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">D'Abbah Foundation gave my son a second chance at life. The recovery support group was a lifeline for our entire family. Today, he is two years clean and studying at university.</p>
+        <div class="testimonial-author"><div class="author-avatar">AF</div><div><div class="author-name">Aisha Faruk</div><div class="author-role">Mother, Abuja</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">The school sensitization program opened my eyes. I thought I was just experimenting, but the workshop helped me see the real risks. I became a youth ambassador and now help others.</p>
+        <div class="testimonial-author"><div class="author-avatar">TM</div><div><div class="author-name">Tunde Musa</div><div class="author-role">Youth Ambassador, Lagos</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">As a teacher, I was at a loss about how to handle students I suspected were using drugs. The educator workshop equipped me with the tools and language to actually help.</p>
+        <div class="testimonial-author"><div class="author-avatar">NK</div><div><div class="author-name">Ngozi Kalu</div><div class="author-role">Secondary School Teacher, Enugu</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE CTA -->
+<section id="cta" class="section-pad">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag" style="background:rgba(201,150,42,.2);color:var(--gold)">Make a Difference</span></div>
+    <h2 class="section-title reveal" style="color:var(--white)">Every Gift <span class="accent">Saves</span> a Life</h2>
+    <p class="reveal" style="color:rgba(255,255,255,.6);text-align:center;font-size:1.05rem;margin-bottom:2rem;font-weight:300">Choose an amount and join thousands of Nigerians building a drug-free future.</p>
+    <div class="donation-grid reveal">
+      <div class="donation-amount" onclick="selectAmount(this)">₦5,000<span class="donation-sub">Funds one school session</span></div>
+      <div class="donation-amount" onclick="selectAmount(this)">₦15,000<span class="donation-sub">Supports 3 families</span></div>
+      <div class="donation-amount active" onclick="selectAmount(this)">₦30,000<span class="donation-sub">Sponsors youth training</span></div>
+      <div class="donation-amount" onclick="selectAmount(this)">Custom<span class="donation-sub">Your choice</span></div>
+    </div>
+    <div class="cta-btns reveal">
+      <a href="#contact" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v14M2 9h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Donate Now
+      </a>
+      <a href="#contact" class="btn-secondary" style="font-size:1rem;padding:1rem 2.5rem">Volunteer With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="section-eyebrow reveal"><span class="eyebrow-tag">Get In Touch</span></div>
+    <h2 class="section-title reveal">Contact <span class="accent">Us</span></h2>
+    <p class="section-sub reveal">Whether you want to volunteer, donate, partner, or simply learn more — we'd love to hear from you.</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2>Let's Build a Brighter Nigeria Together</h2>
+        <p>Join the movement. Every conversation, every volunteer hour, and every naira donated helps us reach more young people across Nigeria.</p>
+        <div class="contact-item"><div class="contact-item-icon">📍</div><div><h4>Location</h4><p>Abuja, Federal Capital Territory, Nigeria</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">✉️</div><div><h4>Email</h4><p>info@dabbahfoundation.org</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">📞</div><div><h4>Phone</h4><p>+234 800 DABBAH (322224)</p></div></div>
+        <div class="contact-item"><div class="contact-item-icon">🕐</div><div><h4>Office Hours</h4><p>Monday – Friday, 8:00 AM – 5:00 PM WAT</p></div></div>
+        <div style="margin-top:2rem">
+          <h4 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:1rem">Follow Our Journey</h4>
+          <div class="social-links">
+            <a class="social-link" href="#" title="Facebook">📘</a>
+            <a class="social-link" href="#" title="Twitter/X">🐦</a>
+            <a class="social-link" href="#" title="Instagram">📷</a>
+            <a class="social-link" href="#" title="LinkedIn">💼</a>
+            <a class="social-link" href="#" title="YouTube">▶️</a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="contact-form">
+          <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:1.5rem;font-size:1.35rem">Send Us a Message</h3>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Amaka"/></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Okafor"/></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="amaka@example.com"/></div>
+          <div class="form-group">
+            <label>I'm Interested In</label>
+            <select>
+              <option>Volunteering</option>
+              <option>Donating</option>
+              <option>Partnership / Collaboration</option>
+              <option>Program Information</option>
+              <option>Media / Press</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Tell us how you'd like to be involved or ask us anything..."></textarea></div>
+          <button class="form-submit" onclick="submitForm()">Send Message →</button>
+          <div class="form-success" id="form-success">✅ Thank you! We'll be in touch within 24–48 hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4C20 4 12 8 10 16C8 24 14 28 20 36C26 28 32 24 30 16C28 8 20 4 20 4Z" fill="url(#fpg)"/>
+          <defs><linearGradient id="fpg" x1="10" y1="4" x2="30" y2="36"><stop stop-color="#E8B84B"/><stop offset="1" stop-color="#C9962A"/></linearGradient></defs>
+        </svg>
+        <span class="nav-brand">D'<span>Abbah</span> Foundation</span>
+      </div>
+      <p>Building Hope. Restoring Lives. Creating a drug-free Nigeria for the next generation through education, community, and compassionate support.</p>
+      <div class="newsletter">
+        <p>Subscribe to our newsletter for updates and impact stories</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="your@email.com"/>
+          <button onclick="this.textContent='✓ Subscribed'">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Foundation</h4>
+      <a href="#about">About Us</a>
+      <a href="#values">Our Values</a>
+      <a href="#approach">Our Approach</a>
+      <a href="#">Annual Report</a>
+      <a href="#">Leadership</a>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <a href="#programs">School Sensitization</a>
+      <a href="#programs">Recovery Support</a>
+      <a href="#programs">Youth Leadership</a>
+      <a href="#programs">Parent Workshops</a>
+      <a href="#programs">Rehab Referrals</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <a href="#cta">Donate</a>
+      <a href="#contact">Volunteer</a>
+      <a href="#contact">Partner With Us</a>
+      <a href="#">Media &amp; Press</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 D'Abbah Foundation. All rights reserved. Registered NGO, Nigeria.</p>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.2)">Building Hope · Restoring Lives · Transforming Communities</p>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Animated counters
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const step=target/120;
+  let current=0;
+  const t=setInterval(()=>{
+    current+=step;
+    if(current>=target){current=target;clearInterval(t)}
+    el.textContent=Math.floor(current).toLocaleString();
+  },16);
+}
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.counter').forEach(animateCounter);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('#impact').forEach(el=>cObs.observe(el));
+
+// Donation select
+function selectAmount(el){
+  document.querySelectorAll('.donation-amount').forEach(d=>d.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Form submit
+function submitForm(){
+  const s=document.getElementById('form-success');
+  s.style.display='block';
+  setTimeout(()=>s.style.display='none',5000);
+}
+
+// Floating particles
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<25;i++){
+    const d=document.createElement('div');
+    d.className='particle';
+    const s=Math.random()*4+2;
+    d.style.cssText=`width:${s}px;height:${s}px;background:rgba(201,150,42,${(Math.random()*.4+.1).toFixed(2)});left:${(Math.random()*100).toFixed(1)}%;top:${(Math.random()*100).toFixed(1)}%;animation-duration:${(Math.random()*20+15).toFixed(1)}s;animation-delay:-${(Math.random()*20).toFixed(1)}s`;
+    c.appendChild(d);
+  }
+})();
+</script>
+</body>
+</html>

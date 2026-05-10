@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title><meta name="robots" content="noindex"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'donations' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Donations' }) %>
+    <div class="admin-content">
+      <!-- Analytics -->
+      <div class="admin-stats-grid" style="margin-bottom:2rem;">
+        <% analytics.forEach(a => { %>
+        <div class="admin-stat-card stat-green">
+          <div class="stat-icon">💵</div>
+          <div class="stat-info">
+            <span class="stat-value"><%= a._id %> <%= a.total.toLocaleString() %></span>
+            <span class="stat-label"><%= a.count %> verified donations</span>
+          </div>
+        </div>
+        <% }) %>
+        <div class="admin-stat-card stat-blue">
+          <div class="stat-icon">📊</div>
+          <div class="stat-info">
+            <span class="stat-value"><%= total %></span>
+            <span class="stat-label">Total transactions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-page-header">
+        <div><h2>Donation History</h2><p><%= total %> total records</p></div>
+      </div>
+      <div class="admin-filters">
+        <form method="GET" action="/admin/donations" class="filter-form">
+          <select name="status" onchange="this.form.submit()">
+            <option value="">All Statuses</option>
+            <% ['pending','success','failed','refunded'].forEach(s => { %>
+            <option value="<%= s %>" <%= filter.status === s ? 'selected' : '' %>><%= s.charAt(0).toUpperCase()+s.slice(1) %></option>
+            <% }) %>
+          </select>
+          <select name="gateway" onchange="this.form.submit()">
+            <option value="">All Gateways</option>
+            <% ['paystack','flutterwave','stripe','manual'].forEach(g => { %>
+            <option value="<%= g %>" <%= filter.gateway === g ? 'selected' : '' %>><%= g.charAt(0).toUpperCase()+g.slice(1) %></option>
+            <% }) %>
+          </select>
+        </form>
+      </div>
+      <div class="admin-panel"><div class="panel-body">
+        <% if (donations && donations.length > 0) { %>
+        <table class="admin-table admin-table-full">
+          <thead><tr><th>Reference</th><th>Donor</th><th>Amount</th><th>Purpose</th><th>Gateway</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>
+            <% donations.forEach(d => { %>
+            <tr>
+              <td style="font-family:monospace; font-size:.8rem; color:var(--text-admin-muted)"><%= d.reference.substring(0,20) %>...</td>
+              <td><div style="font-weight:500;color:white"><%= d.donor.anonymous ? 'Anonymous' : d.donor.name %></div><div style="font-size:.78rem;color:var(--text-admin-muted)"><%= d.donor.anonymous ? '' : d.donor.email %></div></td>
+              <td class="amount-cell"><%= d.currency %> <%= d.amount.toLocaleString() %></td>
+              <td style="text-transform:capitalize;font-size:.82rem"><%= (d.purpose || 'general').replace('_',' ') %></td>
+              <td><span class="gateway-tag"><%= d.gateway %></span></td>
+              <td><span class="status-badge status-<%= d.status %>"><%= d.status %></span></td>
+              <td><%= new Date(d.createdAt).toLocaleDateString('en-NG') %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% if (pages > 1) { %>
+        <div class="admin-pagination">
+          <% for(let i=1;i<=pages;i++) { %><a href="?page=<%= i %>" class="page-btn <%= page===i?'active':'' %>"><%= i %></a><% } %>
+        </div>
+        <% } %>
+        <% } else { %><div class="panel-empty">No donation records found.</div><% } %>
+      </div></div>
+    </div>
+  </div>
+</body>
+</html>

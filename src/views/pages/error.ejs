@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<%- include('../partials/head') %>
+<body>
+<%- include('../partials/navbar') %>
+
+<main class="error-page">
+  <div class="container">
+    <div class="error-content">
+      <div class="error-phoenix" aria-hidden="true">
+        <svg viewBox="0 0 300 300" width="200" height="200">
+          <path d="M150 20C150 20 110 50 100 100C90 150 120 170 150 240C180 170 210 150 200 100C190 50 150 20 150 20Z" fill="url(#errGrad)" opacity="0.4"/>
+          <defs>
+            <linearGradient id="errGrad" x1="100" y1="20" x2="200" y2="240">
+              <stop stop-color="#E8B84B"/><stop offset="1" stop-color="#C9962A"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="error-code"><%= statusCode || 404 %></span>
+      <h1 class="error-title"><%= title || 'Page Not Found' %></h1>
+      <p class="error-message"><%= message || 'The page you are looking for could not be found.' %></p>
+      <div class="error-actions">
+        <a href="/" class="btn-primary">Return Home</a>
+        <a href="/contact" class="btn-secondary">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+</body>
+</html>

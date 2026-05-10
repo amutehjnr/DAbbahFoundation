@@ -1,0 +1,69 @@
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <!-- Primary Meta Tags -->
+  <title><%= title || "D'Abbah Foundation — Building Hope. Restoring Lives." %></title>
+  <meta name="description" content="<%= description || 'D\'Abbah Foundation: Preventing drug abuse, restoring hope, and empowering youth in Nigeria.' %>"/>
+  <meta name="keywords" content="drug abuse prevention, NGO Nigeria, youth empowerment, D'Abbah Foundation, drug-free Nigeria"/>
+  <meta name="author" content="D'Abbah Foundation"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="<%= appUrl + (locals.canonicalPath || '/') %>"/>
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= appUrl %>"/>
+  <meta property="og:title" content="<%= title || 'D\'Abbah Foundation' %>"/>
+  <meta property="og:description" content="<%= description || 'Building Hope. Restoring Lives.' %>"/>
+  <meta property="og:image" content="<%= ogImage || appUrl + '/images/og-default.jpg' %>"/>
+  <meta property="og:site_name" content="D'Abbah Foundation"/>
+  <meta property="og:locale" content="en_NG"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="<%= title || 'D\'Abbah Foundation' %>"/>
+  <meta name="twitter:description" content="<%= description || 'Building Hope. Restoring Lives.' %>"/>
+  <meta name="twitter:image" content="<%= ogImage || appUrl + '/images/og-default.jpg' %>"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg"/>
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="#0B1F3A"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="/css/main.css"/>
+  <link rel="stylesheet" href="/css/pages.css"/>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "D'Abbah Foundation",
+    "url": "<%= appUrl %>",
+    "logo": "<%= appUrl %>/images/logo.svg",
+    "description": "A youth-focused NGO committed to preventing drug abuse and restoring hope in Nigeria.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "General",
+      "email": "info@dabbahfoundation.org"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "NG"
+    },
+    "sameAs": [
+      "https://twitter.com/dabbahfoundation",
+      "https://instagram.com/dabbahfoundation",
+      "https://facebook.com/dabbahfoundation"
+    ]
+  }
+  </script>
+</head>

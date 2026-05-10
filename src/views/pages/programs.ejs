@@ -1,0 +1,84 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">What We Do</span>
+        <h1 class="page-hero-title">Programs & <em class="accent-gold">Initiatives</em></h1>
+        <p class="page-hero-sub">Evidence-based programs creating lasting, drug-free communities across Nigeria through education, support, and empowerment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="programs-full-grid">
+        <% const defaultPrograms = [
+          { id: 'school', icon: '🏫', title: 'School Sensitization Program', category: 'Education', shortDescription: 'Awareness sessions in schools educating students on drug risks and effective prevention strategies.', description: 'Our School Sensitization Program delivers age-appropriate, evidence-based drug education sessions in primary and secondary schools across Nigeria. Trained facilitators engage students with interactive workshops, helping them understand the risks of drug abuse and build personal resilience against peer pressure. Each session includes Q&A, peer discussion, and take-home resources for parents.', impact: { beneficiaries: 3000, sessions: 85, locations: 40 } },
+          { id: 'recovery', icon: '🤝', title: 'Community Recovery Support Groups', category: 'Recovery', shortDescription: 'Weekly support meetings for individuals and families affected by drug abuse.', description: 'Our Community Recovery Support Groups provide safe, confidential weekly spaces where individuals in recovery and their families can share experiences, receive emotional support, and access practical guidance. Groups are led by trained facilitators and peer counselors who understand the recovery journey firsthand.', impact: { beneficiaries: 800, sessions: 200, locations: 15 } },
+          { id: 'youth', icon: '🌟', title: 'Youth Leadership Training', category: 'Leadership', shortDescription: 'Training programs raising young ambassadors for drug-free advocacy.', description: 'The Youth Leadership Training program equips motivated young Nigerians with leadership skills, communication tools, and community organizing knowledge to become effective drug-free advocates in their schools and neighborhoods. Graduates become certified Youth Ambassadors for the foundation.', impact: { beneficiaries: 450, sessions: 24, locations: 8 } },
+          { id: 'parents', icon: '👨‍👩‍👧', title: 'Parent Empowerment Workshops', category: 'Family', shortDescription: 'Sessions equipping parents with tools to guide and support their children.', description: 'Our Parent Empowerment Workshops give parents and guardians the knowledge, language, and strategies they need to have meaningful conversations with their children about drugs, recognize early warning signs of substance use, and build protective family environments that support healthy development.', impact: { beneficiaries: 600, sessions: 40, locations: 20 } },
+          { id: 'rehab', icon: '🏥', title: 'Rehabilitation Referral Network', category: 'Healthcare', shortDescription: 'Connecting individuals to professional treatment and recovery centers nationwide.', description: 'Through our Rehabilitation Referral Network, we connect individuals struggling with drug dependency to vetted, professional treatment and recovery centers across Nigeria. Our team provides compassionate case management, follow-up support, and transition assistance to ensure continuity of care.', impact: { beneficiaries: 250, sessions: 0, locations: 30 } },
+        ]; %>
+        <% const displayPrograms = (typeof programs !== 'undefined' && programs.length > 0) ? programs : defaultPrograms; %>
+        <% displayPrograms.forEach((p, i) => { %>
+        <div class="program-full-card reveal-up" id="<%= p.id || p._id %>" style="animation-delay: <%= i * 0.08 %>s">
+          <div class="program-full-icon-col">
+            <div class="program-full-icon"><%= p.icon || '✦' %></div>
+            <span class="program-tag"><%= p.category || 'Program' %></span>
+          </div>
+          <div class="program-full-body">
+            <h3 class="program-full-title"><%= p.title %></h3>
+            <p class="program-full-short"><%= p.shortDescription || p.description?.substring(0, 160) %>...</p>
+            <p class="program-full-desc"><%= p.description %></p>
+            <% if (p.impact && (p.impact.beneficiaries || p.impact.sessions || p.impact.locations)) { %>
+            <div class="program-impact-row">
+              <% if (p.impact.beneficiaries > 0) { %>
+              <div class="program-impact-item">
+                <span class="program-impact-num"><%= p.impact.beneficiaries.toLocaleString() %>+</span>
+                <span class="program-impact-lbl">Beneficiaries</span>
+              </div>
+              <% } %>
+              <% if (p.impact.sessions > 0) { %>
+              <div class="program-impact-item">
+                <span class="program-impact-num"><%= p.impact.sessions %>+</span>
+                <span class="program-impact-lbl">Sessions Held</span>
+              </div>
+              <% } %>
+              <% if (p.impact.locations > 0) { %>
+              <div class="program-impact-item">
+                <span class="program-impact-num"><%= p.impact.locations %>+</span>
+                <span class="program-impact-lbl">Locations</span>
+              </div>
+              <% } %>
+            </div>
+            <% } %>
+            <a href="/contact?subject=Program Information&program=<%= encodeURIComponent(p.title) %>" class="btn-outline" style="margin-top:1.5rem;">Get Involved →</a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-bg"><div class="cta-orb cta-orb-1"></div><div class="cta-orb cta-orb-2"></div></div>
+    <div class="container">
+      <div class="cta-content reveal-up">
+        <span class="eyebrow-tag eyebrow-light">Get Involved</span>
+        <h2 class="cta-title">Ready to Make a <em>Difference?</em></h2>
+        <p class="cta-desc">Partner with us, volunteer your time, or support our programs financially. Every contribution helps us reach more youth and communities.</p>
+        <div class="cta-btns">
+          <a href="/donate" class="btn-gold">Donate Now</a>
+          <a href="/volunteer" class="btn-ghost-light">Volunteer With Us</a>
+          <a href="/contact" class="btn-ghost-light">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

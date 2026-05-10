@@ -1,0 +1,170 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">Make an Impact</span>
+        <h1 class="page-hero-title">Support Our <em class="accent-gold">Mission</em></h1>
+        <p class="page-hero-sub">Your generosity helps us reach more youth, support more families, and build stronger communities. Every naira makes a real difference.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="donate-grid">
+        <div class="donate-left reveal-left">
+          <h2>Why Donate?</h2>
+          <div class="donate-reasons">
+            <div class="donate-reason">
+              <span class="donate-reason-icon">🏫</span>
+              <div>
+                <h4>Fund School Programs</h4>
+                <p>₦5,000 sends our team to one school session reaching 200+ students.</p>
+              </div>
+            </div>
+            <div class="donate-reason">
+              <span class="donate-reason-icon">🤝</span>
+              <div>
+                <h4>Support Recovery Groups</h4>
+                <p>₦10,000 funds one month of weekly community recovery support meetings.</p>
+              </div>
+            </div>
+            <div class="donate-reason">
+              <span class="donate-reason-icon">🌟</span>
+              <div>
+                <h4>Train Youth Leaders</h4>
+                <p>₦25,000 equips one young person with full leadership training and materials.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="donate-trust-badges">
+            <div class="trust-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>SSL Secured</span>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-paystack">Powered by Paystack</span>
+            </div>
+            <div class="trust-badge">
+              <span>Registered NGO, Nigeria</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="donate-form-wrap reveal-right">
+          <div class="donate-form-card">
+            <h3>Make a Donation</h3>
+
+            <div class="donate-amounts" id="donationAmounts">
+              <button class="amount-btn active" onclick="selectAmount(this)" data-amount="2000">₦2,000</button>
+              <button class="amount-btn" onclick="selectAmount(this)" data-amount="5000">₦5,000</button>
+              <button class="amount-btn" onclick="selectAmount(this)" data-amount="10000">₦10,000</button>
+              <button class="amount-btn" onclick="selectAmount(this)" data-amount="25000">₦25,000</button>
+              <button class="amount-btn" onclick="selectAmount(this)" data-amount="50000">₦50,000</button>
+              <button class="amount-btn amount-custom" onclick="selectCustom(this)">Custom</button>
+            </div>
+
+            <div class="form-group" id="customAmountWrap" style="display:none">
+              <label for="customAmount">Enter Amount (₦)</label>
+              <input type="number" id="customAmount" placeholder="e.g. 15000" min="100"/>
+            </div>
+
+            <div class="form-group">
+              <label for="donorName">Full Name</label>
+              <input type="text" id="donorName" placeholder="Your full name" autocomplete="name"/>
+            </div>
+            <div class="form-group">
+              <label for="donorEmail">Email Address</label>
+              <input type="email" id="donorEmail" placeholder="your@email.com" autocomplete="email"/>
+            </div>
+            <div class="form-group">
+              <label for="donationPurpose">Donation Purpose</label>
+              <select id="donationPurpose">
+                <option value="general">General Support</option>
+                <option value="school_program">School Programs</option>
+                <option value="recovery_support">Recovery Support</option>
+                <option value="youth_leadership">Youth Leadership</option>
+                <option value="emergency">Emergency Fund</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="anonymousDonate"/> Make this donation anonymous
+              </label>
+            </div>
+
+            <button class="btn-donate" onclick="initiateDonation()">
+              Donate Securely
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </button>
+            <p class="donate-note">🔒 Your payment is processed securely via Paystack</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+let selectedAmount = 2000;
+
+function selectAmount(el) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  selectedAmount = parseInt(el.dataset.amount);
+  document.getElementById('customAmountWrap').style.display = 'none';
+}
+
+function selectCustom(el) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('customAmountWrap').style.display = 'block';
+  document.getElementById('customAmount').addEventListener('input', function() {
+    selectedAmount = parseInt(this.value) || 0;
+  });
+}
+
+async function initiateDonation() {
+  const name = document.getElementById('donorName').value.trim();
+  const email = document.getElementById('donorEmail').value.trim();
+  const purpose = document.getElementById('donationPurpose').value;
+  const anonymous = document.getElementById('anonymousDonate').checked;
+  const amount = document.getElementById('customAmount')?.value || selectedAmount;
+
+  if (!name || !email || !amount || amount < 100) {
+    alert('Please fill in all required fields and ensure amount is at least ₦100.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/donate/initiate/paystack', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, amount: parseInt(amount), purpose, anonymous })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error);
+
+    const handler = PaystackPop.setup({
+      key: '<%= paystackPublicKey %>',
+      email,
+      amount: parseInt(amount) * 100,
+      ref: data.data.reference,
+      callback: function(response) {
+        window.location.href = '/donate/verify/paystack/' + response.reference;
+      },
+      onClose: function() { alert('Donation window closed.'); }
+    });
+    handler.openIframe();
+  } catch (err) {
+    alert('Could not initiate donation: ' + err.message);
+  }
+}
+</script>

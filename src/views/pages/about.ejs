@@ -1,0 +1,97 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">Our Story</span>
+        <h1 class="page-hero-title">About D'<em class="accent-gold">Abbah</em> Foundation</h1>
+        <p class="page-hero-sub">A movement for change — restoring hope, breaking chains, and building a drug-free Nigeria one community at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Detail -->
+  <section class="section-pad bg-white">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left reveal-left">
+          <span class="eyebrow-tag">Who We Are</span>
+          <h2 class="section-title-left">A Movement for <em class="accent">Change</em></h2>
+          <p>D'Abbah Foundation is a youth-focused non-governmental organization committed to preventing drug abuse and restoring hope among individuals and communities across Nigeria.</p>
+          <p>We work through education, community engagement, and support systems to create lasting impact and positive behavioral change — because we believe every young person deserves a drug-free future.</p>
+          <p>Founded by a group of passionate advocates who witnessed the devastating impact of drug abuse on Nigerian youth, D'Abbah Foundation has grown into a trusted voice for prevention, recovery, and empowerment.</p>
+          <p>The phoenix in our identity represents hope, transformation, and new beginnings. Like the phoenix rising from ashes, we believe every individual can rise above addiction and rebuild their life.</p>
+        </div>
+        <div class="about-right reveal-right">
+          <div class="vm-stack">
+            <div class="vm-card vm-vision">
+              <div class="vm-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <span class="vm-label">Our Vision</span>
+              <p class="vm-text">"A Nigeria where every young person grows up in a safe, drug-free environment, empowered to make healthy choices and live their fullest potential."</p>
+            </div>
+            <div class="vm-card vm-mission">
+              <div class="vm-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <span class="vm-label">Our Mission</span>
+              <p class="vm-text">"To break the chains of drug abuse by empowering individuals and communities through transformative education, compassionate support, and strong collaborations for healthier, drug-free lives."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="section-pad bg-navy">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag eyebrow-light">What Guides Us</span>
+        <h2 class="section-title section-title-light">Our Core <em class="accent-gold">Values</em></h2>
+      </div>
+      <div class="values-grid">
+        <% [
+          { icon: '💙', num: '01', name: 'Compassion', desc: 'We treat everyone with empathy, dignity, and genuine care — never judgment. Every person deserves to be seen and supported on their journey.' },
+          { icon: '⚖️', num: '02', name: 'Integrity', desc: 'We uphold honesty in all we do and promote evidence-based solutions that create real, measurable change in communities.' },
+          { icon: '🌍', num: '03', name: 'Community', desc: 'We work hand-in-hand with families, schools, and local leaders — because sustainable change is always built together, never alone.' },
+          { icon: '⚡', num: '04', name: 'Empowerment', desc: 'We equip individuals with the tools, knowledge, and confidence to make better life choices and become agents of positive change.' },
+        ].forEach((v, i) => { %>
+        <div class="value-card reveal-up" style="animation-delay: <%= i * 0.1 %>s">
+          <span class="value-bg-num"><%= v.num %></span>
+          <span class="value-icon"><%= v.icon %></span>
+          <h3 class="value-name"><%= v.name %></h3>
+          <p class="value-desc"><%= v.desc %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="section-pad bg-cream">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow-tag">The People</span>
+        <h2 class="section-title">Our <em class="accent">Leadership</em></h2>
+        <p class="section-sub">Dedicated professionals and community advocates driving change across Nigeria.</p>
+      </div>
+      <div class="team-grid">
+        <% [
+          { name: 'Founder & Executive Director', role: 'Founder', initial: 'F', bio: 'A passionate advocate with years of experience in youth development and community health across Nigeria.' },
+          { name: 'Programs Director', role: 'Programs', initial: 'P', bio: 'Expert in evidence-based drug prevention education and community mobilization strategies.' },
+          { name: 'Community Outreach Lead', role: 'Outreach', initial: 'C', bio: 'Bridges relationships between the foundation, schools, local governments and community leaders.' },
+        ].forEach(m => { %>
+        <div class="team-card reveal-up">
+          <div class="team-avatar" aria-hidden="true"><%= m.initial %></div>
+          <h4 class="team-name"><%= m.name %></h4>
+          <span class="team-role"><%= m.role %></span>
+          <p class="team-bio"><%= m.bio %></p>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('../partials/footer') %>

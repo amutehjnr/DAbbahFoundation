@@ -1,0 +1,120 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <section class="page-hero bg-navy">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="eyebrow-tag eyebrow-light">We'd Love to Hear From You</span>
+        <h1 class="page-hero-title">Get in <em class="accent-gold">Touch</em></h1>
+        <p class="page-hero-sub">Whether you want to partner, volunteer, seek help, or learn more — our team is ready to connect.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <span class="eyebrow-tag">Contact Information</span>
+          <h2 class="section-title-left">Let's <em class="accent">Connect</em></h2>
+          <ul class="contact-details">
+            <li>
+              <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><span class="contact-label">Email</span><a href="mailto:info@dabbahfoundation.org" class="contact-value">info@dabbahfoundation.org</a></div>
+            </li>
+            <li>
+              <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.59 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.76-1.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg></div>
+              <div><span class="contact-label">Phone</span><a href="tel:+2348000000000" class="contact-value">+234 800 000 0000</a></div>
+            </li>
+            <li>
+              <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><span class="contact-label">Location</span><span class="contact-value">Abuja, FCT, Nigeria</span></div>
+            </li>
+            <li>
+              <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div><span class="contact-label">Office Hours</span><span class="contact-value">Monday – Friday, 9am – 5pm WAT</span></div>
+            </li>
+          </ul>
+
+          <!-- Map embed -->
+          <div class="contact-map">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=7.3,9.0,7.6,9.2&layer=mapnik"
+              width="100%" height="220" style="border-radius:12px; border:none;"
+              title="D'Abbah Foundation Location — Abuja, Nigeria"
+              loading="lazy">
+            </iframe>
+            <p class="map-note">📍 Abuja, Federal Capital Territory, Nigeria</p>
+          </div>
+
+          <div class="social-connect">
+            <h4>Follow Us</h4>
+            <div class="footer-social" style="margin-top: 0.75rem;">
+              <a href="https://twitter.com/dabbahfoundation" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://instagram.com/dabbahfoundation" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://facebook.com/dabbahfoundation" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form" id="contactPageForm" novalidate>
+            <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:0.5rem; color:var(--navy)">Send a Message</h3>
+            <p style="color:var(--text-light); font-size:.875rem; margin-bottom:1.75rem;">We respond within 24–48 hours on business days.</p>
+
+            <div class="form-row">
+              <div class="form-group"><label for="cName">Full Name *</label><input type="text" id="cName" name="name" required placeholder="Your name" autocomplete="name"/></div>
+              <div class="form-group"><label for="cEmail">Email *</label><input type="email" id="cEmail" name="email" required placeholder="your@email.com" autocomplete="email"/></div>
+            </div>
+            <div class="form-group"><label for="cPhone">Phone</label><input type="tel" id="cPhone" name="phone" placeholder="+234 800 000 0000"/></div>
+            <div class="form-group">
+              <label for="cSubject">Subject</label>
+              <select id="cSubject" name="subject">
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Partnership">Partnership Opportunity</option>
+                <option value="Volunteer">Volunteer Application</option>
+                <option value="Donations">Donation Inquiry</option>
+                <option value="Program Information">Program Information</option>
+                <option value="Media / Press">Media / Press</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="cMsg">Message *</label><textarea id="cMsg" name="message" rows="6" required placeholder="Tell us how we can help or how you'd like to get involved..."></textarea></div>
+            <button type="submit" class="btn-form-submit">Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+            <div class="form-message" id="cFormMsg" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
+
+<script>
+document.getElementById('contactPageForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type=submit]');
+  const msg = document.getElementById('cFormMsg');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  try {
+    const body = { name: this.name.value, email: this.email.value, phone: this.phone.value, subject: this.subject.value, message: this.message.value };
+    const res = await fetch('/contact', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    const data = await res.json();
+    msg.className = 'form-message ' + (data.success ? 'success' : 'error');
+    msg.textContent = data.message || data.error;
+    if (data.success) this.reset();
+  } catch(err) {
+    msg.className = 'form-message error'; msg.textContent = 'An error occurred.';
+  } finally {
+    btn.disabled = false; btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+  }
+});
+</script>

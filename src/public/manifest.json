@@ -1,0 +1,16 @@
+{
+  "name": "D'Abbah Foundation",
+  "short_name": "D'Abbah",
+  "description": "Building Hope. Restoring Lives. Nigeria's premier youth-focused drug abuse prevention NGO.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071527",
+  "theme_color": "#0B1F3A",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "categories": ["education", "social", "health"],
+  "lang": "en-NG"
+}

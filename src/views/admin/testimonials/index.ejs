@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><%= title %></title><meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/main.css"/><link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-body">
+  <%- include('../partials/admin-sidebar', { activePage: 'testimonials' }) %>
+  <div class="admin-main">
+    <%- include('../partials/admin-topbar', { pageTitle: 'Testimonials' }) %>
+    <div class="admin-content">
+      <div class="admin-page-header"><div><h2>Testimonials</h2><p><%= testimonials.length %> total</p></div></div>
+      <div class="admin-panel"><div class="panel-body">
+        <% if (testimonials && testimonials.length > 0) { %>
+        <table class="admin-table admin-table-full">
+          <thead><tr><th>Name</th><th>Role</th><th>Quote</th><th>Rating</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead>
+          <tbody>
+            <% testimonials.forEach(t => { %>
+            <tr>
+              <td style="font-weight:500;color:white"><%= t.name %></td>
+              <td><%= t.role %></td>
+              <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-admin-muted)"><em>"<%= t.quote.substring(0,80) %>..."</em></td>
+              <td style="color:#fbbf24"><%= '★'.repeat(t.rating || 5) %></td>
+              <td><span class="status-badge status-<%= t.status %>"><%= t.status %></span></td>
+              <td><%= t.featured ? '⭐' : '—' %></td>
+              <td class="actions-cell">
+                <button onclick="updateT('<%= t._id %>','approved')" class="action-btn" title="Approve">✓</button>
+                <button onclick="updateT('<%= t._id %>','rejected')" class="action-btn" title="Reject">✗</button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } else { %><div class="panel-empty">No testimonials yet.</div><% } %>
+      </div></div>
+    </div>
+  </div>
+  <script>
+    async function updateT(id, status) {
+      const res = await fetch(`/api/testimonials/${id}/status`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ status }) });
+      if ((await res.json()).success) location.reload();
+    }
+  </script>
+</body>
+</html>
